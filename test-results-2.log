@@ -1,0 +1,48 @@
+
+executado em git bash: 
+/c/douglasabnovato/trybe (feature/issues-mvp)
+$ npm test -- --watchAll=false > test-results.log 2>&1
+
+
+> coin-wallet-app@0.1.0 test
+> react-scripts test --watchAll=false
+
+PASS src/tests/bonus.test.js (14.319s)
+PASS src/tests/login.test.js (23.026s)
+FAIL src/tests/wallet.test.js (24.038s)
+  ● 8 - Desenvolva a opção de `Adicionar despesa` na sua tabela de gastos › Crie um botão com o texto 'Adicionar despesa' que salva as informações da despesa no estado global e atualiza a soma de despesas no header
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected
+    + Received
+
+    @@ -197,11 +197,11 @@
+              "pctChange": "-0.65",
+              "timestamp": "1601982925",
+              "varBid": "-0.01",
+            },
+          },
+    -     "id": 0,
+    +     "id": 1786143022810,
+          "method": "Cartão de crédito",
+          "tag": "Lazer",
+          "value": "10",
+        },
+      ]
+
+      188 |     ];
+      189 | 
+    > 190 |     expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense);
+          |                                              ^
+      191 | 
+      192 |     userEvent.type(valueInput, '20');
+      193 |     userEvent.selectOptions(currencyInput, 'EUR');
+
+      at Object.<anonymous> (src/tests/wallet.test.js:190:46)
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       1 failed, 27 passed, 28 total
+Snapshots:   0 total
+Time:        32.168s
+Ran all test suites.

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import WalletForm from '../../components/WalletForm';
+import Table from '../../components/Table';
 import { fetchCurrencies } from '../../actions';
 import './index.css';
 
@@ -17,6 +18,7 @@ function Wallet() {
       <Header />
       <main className="wallet-main">
         <WalletForm />
+        <Table />
       </main>
     </div>
   );

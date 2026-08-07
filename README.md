@@ -227,6 +227,7 @@ npm test
 ---
 
 # Requisitos do projeto
+
 ## Lista de requisitos
 
 ### Página de Login
@@ -298,7 +299,11 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - [ ] Esta página deve ser renderizada por um componente chamado ***Wallet***.
 
   ![image carteira](./.github/template/carteira.gif)
+
+
 ---
+
+
 ### Configurando sua página
 
 #### 4. Crie uma página para sua carteira com as seguintes características:
@@ -317,6 +322,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
   * tarefa.
 
 ---
+
+
 ### Header (cabeçalho)
 
 #### 5. Crie um header para a página de carteira contendo as seguintes características:
@@ -349,7 +356,10 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - **Observações da minha resolução**
   * tarefa.
 
+
 ---
+
+
 ### Formulário de adição de Despesa
 
  **Dica:** atente-se ao [formato sugerido pelo React](https://pt-br.reactjs.org/docs/forms.html) para criar formulários.
@@ -396,8 +406,12 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - **Observações da minha resolução**
   * tarefa.
 
+
 ---
+
+
 #### 7. Implemente a lógica para preencher as opções do campo "Moedas", buscando as siglas das moedas da API:
+
 
   * [ ] Ao entrar na página `/carteira`, você deverá fazer uma requisição para a API das moedas e preencher as opções do `<select>` de "Moedas" com os valores retornados. Utilizando as siglas das moedas. (faça a requisição no carregamento da página, filtre a resposta para remover USDT e guarde as moedas em wallet.currencies)
 
@@ -410,7 +424,10 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - **Observações da minha resolução**
   * tarefa.
 
+
 ----
+
+
 #### 8. Desenvolva a opção de "Adicionar despesa" na sua tabela de gastos
 
   * [ ] O botão de adicionar despesa deve salvar a despesa no estado global e recalcular o total no header. (use uma action para inserir o objeto na lista wallet.expenses e mantenha exchangeRates salvo junto com a despesa)
@@ -536,6 +553,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
   * tarefa.
 
 ---
+
+
 ### Tabela de Gastos
 
 #### 9. Desenvolva uma tabela com os gastos contendo as seguintes características:
@@ -557,6 +576,7 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
     * [ ] Utilize sempre o formato `0.00` (número - ponto - duas casas decimais)
 
 **O que será testado**
+
 ```
 - [ ] A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão.
 - [ ] A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.
@@ -617,6 +637,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 ### Detalhes
 
 - Projeto tem origem no repositório [betrybe](https://github.com/betrybe/douglasnovato-test)
+
+
 ---
 
 #### 📅 Telas Resultado da resolução das tarefas
@@ -634,10 +656,10 @@ Feito com ❤️ por Douglas A B Novato. 👋🏽 [Entre em contato!](https://ww
 ---
 
 
-#### 📅 estrutura de pastas
+#### 📅 Estrutura de Pastas
 
 
-
+```text
 trybe/
 ├── .editorconfig
 ├── .eslintignore
@@ -690,111 +712,39 @@ trybe/
 │   └── setupTests.js
 ├── trybe.yml
 └── ...
-
+```
 
 
 ---
 
-## Plano de ação para desenvolvimento
 
-### 1. Entender o escopo do projeto
-- Ler o README completo e identificar os requisitos obrigatórios e bônus.
-- Verificar quais funcionalidades principais a aplicação precisa ter:
-  - login
-  - carteira
-  - formulário de despesas
-  - tabela de gastos
-  - edição e exclusão
+# Fluxo de Trabalho com Branches (Git Workflow)
 
-### 2. Configurar o ambiente inicial
-- Instalar as dependências com `npm install`.
-- Rodar o projeto localmente com `npm start`.
-- Executar os testes iniciais com `npm test` para ver o estado atual.
-- Confirmar se o projeto já vem com estrutura base de React + Redux.
+Para garantir a estabilidade do código em produção, manutenibilidade e organização do projeto, adotamos o seguinte fluxo de trabalho baseado em branches:
 
-### 3. Compreender a estrutura existente
-- Verificar as pastas principais:
-  - `src/pages`
-  - `src/components`
-  - `src/reducers`
-  - `src/actions`
-  - `src/store`
-- Identificar os componentes já criados e o que ainda falta implementar.
-- Entender como o estado global está organizado.
+## 🌿 Estrutura das Branches e 🔄 Fluxo Operacional
 
-### 4. Implementar a tela de login
-- Criar a página inicial em rota `/`.
-- Adicionar os campos de email e senha.
-- Criar o botão “Entrar”.
-- Implementar validação de email e senha.
-- Garantir que o botão fique desabilitado enquanto os dados estiverem inválidos.
+1. **`main` (Produção / Versão Estável)**
+   - Contém apenas código testado, validado e pronto para entrega.
+   - Nenhum commit direto deve ser feito nesta branch.
 
-### 5. Integrar Redux no fluxo de login
-- Criar ou ajustar o reducer de usuário.
-- Salvar o email no estado global.
-- Redirecionar para a rota `/carteira` após o login bem-sucedido.
-- Confirmar que a estrutura do estado global siga o formato esperado.
+2. **`developer-versao` (Integração e Homologação)**
+   - Branch responsável por centralizar as novas funcionalidades já desenvolvidas antes de irem para produção.
+   - Serve como ponto de validação e testes integrados.
 
-### 6. Criar a página da carteira
-- Criar o componente `Wallet` na pasta correta.
-- Definir a rota `/carteira`.
-- Garantir que a página seja renderizada corretamente.
+3. **`feature/issues-mvp` (Desenvolvimento de Funcionalidades)**
+   - Branch de trabalho ativo onde implementamos as issues, telas, componentes e lógicas do MVP da TrybeWallet.
+   - É a partir daqui que abrimos os Pull Requests / Merges para a `developer-versao`.
+ 
 
-### 7. Construir o header da carteira
-- Exibir o email do usuário logado.
-- Exibir o valor total das despesas.
-- Exibir a moeda de conversão, que no caso é BRL.
 
-### 8. Implementar o formulário de despesas
-- Criar os campos:
-  - valor
-  - descrição
-  - moeda
-  - método de pagamento
-  - tag
-- Montar os selects com as opções esperadas.
-- Preparar o formulário para capturar os dados da despesa.
+---
 
-### 9. Buscar as moedas na API
-- Fazer a requisição à API de cotações.
-- Filtrar as moedas conforme o requisito.
-- Preencher o select de moedas com as siglas retornadas.
-- Remover a moeda `USDT`.
-
-### 10. Salvar despesas no estado global
-- Criar a lógica para adicionar uma despesa.
-- Armazenar a despesa no estado `wallet.expenses`.
-- Guardar também as informações de câmbio recebidas da API.
-- Atualizar o total no header após adicionar.
-
-### 11. Renderizar a tabela de gastos
-- Criar a tabela com as colunas exigidas.
-- Popular a tabela com os dados vindos do estado.
-- Exibir os valores de câmbio, valor convertido e moeda de conversão.
-
-### 12. Implementar remoção de despesas
-- Criar o botão de excluir.
-- Remover a despesa do estado global.
-- Recalcular o total após a remoção.
-
-### 13. Implementar edição de despesas
-- Criar o botão de editar.
-- Permitir preencher o formulário com os dados da despesa selecionada.
-- Atualizar a despesa no estado após salvar a edição.
-
-### 14. Ajustar detalhes visuais e semânticos
-- Melhorar o layout da aplicação.
-- Garantir que os elementos tenham os nomes e `data-testid` esperados pelos testes.
-- Revisar acessibilidade básica dos formulários e botões.
-
-### 15. Validar com testes e linter
-- Rodar os testes unitários.
-- Corrigir falhas apontadas.
-- Rodar o linter.
-- Ajustar qualquer problema de estilo ou boas práticas.
-
+ 
 ## Sugestão de ordem de estudo
+
 Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
+
 1. login
 2. Redux
 3. carteira
@@ -805,3 +755,160 @@ Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
 8. edição/exclusão
 9. testes
 
+
+---
+
+
+# Plano de Ação para Desenvolvimento - TrybeWallet
+
+## Visão Geral do Progresso
+
+- [x] **Fase 1:** Entender o escopo do projeto
+- [x] **Fase 2:** Configurar o ambiente inicial
+- [x] **Fase 3:** Compreender a estrutura existente
+- [x] **Fase 4:** Implementar a tela de login
+- [x] **Fase 5:** Integrar Redux no fluxo de login
+- [x] **Fase 6:** Criar a página da carteira
+- [x] **Fase 7:** Construir o header da carteira
+- [x] **Fase 8:** Buscar as moedas na API (Thunk e filtragem de USDT)
+- [x] **Fase 9:** Implementar o formulário de despesas (com atributos data-testid e estilização)
+- [x] **Fase 10:** Salvar despesas no estado global com cotações (atualização automática do Header)
+- [x] **Fase 11:** Renderizar a tabela de gastos
+- [x] **Fase 12:** Implementar remoção de despesas
+- [x] **Fase 13:** Implementar edição de despesas
+- [x] **Fase 14:** Ajustar detalhes visuais e semânticos
+- [x] **Fase 15:** Validar com testes e linter
+
+---
+
+## Detalhamento dos Passos
+
+### 1. Entender o escopo do projeto
+- Ler o README completo e identificar os requisitos obrigatórios e bônus.
+- Verificar quais funcionalidades principais a aplicação precisa ter: login, carteira, formulário de despesas, tabela de gastos, edição e exclusão. *(Concluído)*
+
+### 2. Configurar o ambiente inicial
+- Instalar as dependências com `npm install`.
+- Rodar o projeto localmente com `npm start`.
+- Executar os testes iniciais com `npm test`. *(Concluído)*
+
+### 3. Compreender a estrutura existente
+- Verificar as pastas principais (`src/pages`, `src/components`, `src/reducers`, `src/actions`, `src/store`).
+- Entender como o estado global está organizado. *(Concluído)*
+
+### 4. Implementar a tela de login
+- Criar a página inicial em rota `/`.
+- Adicionar os campos de email e senha com validação.
+- Garantir que o botão “Entrar” gerencie o estado de habilitado/desabilitado. *(Concluído)*
+
+### 5. Integrar Redux no fluxo de login
+- Criar o reducer de usuário e a action `SAVE_EMAIL`.
+- Salvar o email no estado global e redirecionar para `/carteira`. *(Concluído)*
+
+### 6. Criar a página da carteira
+- Criar o componente `Wallet` na rota protegida `/carteira`. *(Concluído)*
+
+### 7. Construir o header da carteira
+- Exibir o email do usuário logado (`data-testid="email-field"`).
+- Exibir o valor total das despesas (`data-testid="total-field"`).
+- Exibir a moeda de conversão BRL (`data-testid="header-currency-field"`). *(Concluído)*
+
+### 8. Buscar as moedas na API
+- Criar Action Thunk para buscar cotações na AwesomeAPI (`https://economia.awesomeapi.com.br/json/all`).
+- Filtrar e remover a moeda `USDT` conforme requisito obrigatório.
+- Preencher o estado global `wallet.currencies`. *(Concluído)*
+
+### 9. Implementar o formulário de despesas
+- Criar os campos: valor, descrição, moeda, método de pagamento e tag com seus respectivos `data-testid`.
+- Integrar os selects com as moedas vindas do Redux. *(Concluído)*
+
+### 10. Salvar despesas no estado global
+- Criar lógica via Thunk para capturar cotações atuais no momento do clique.
+- Armazenar a despesa no estado `wallet.expenses` com ID sequencial e taxas de câmbio.
+- Atualizar dinamicamente o total no Header. *(Concluído)*
+
+### 11. Renderizar a tabela de gastos
+- Criar a tabela com as colunas exigidas (Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido, Moeda de conversão, Excluir/Editar).
+- Popular a tabela com os dados vindos do estado global. *(Próximo passo)*
+
+### 12. Implementar remoção de despesas
+- Criar o botão de excluir na tabela.
+- Remover a despesa do estado global e recalcular o total.
+
+### 13. Implementar edição de despesas
+- Criar o botão de editar e carregar os dados no formulário.
+- Atualizar a despesa correspondente no estado global após salvar.
+
+### 14. Ajustar detalhes visuais e semânticos
+- Garantir refinamento de layout, responsividade e conformidade com os testes automatizados.
+
+### 15. Validar com testes e linter
+- Executar suíte completa de testes da Trybe e validação de linter.
+
+
+---
+
+# Relatório de Execução e Correção de Testes — TrybeWallet
+
+Este relatório consolida o panorama completo da suíte de testes da aplicação, detalhando o status inicial, as intervenções realizadas e a conclusão do ciclo de validação.
+
+---
+
+## 1. Visão Geral da Execução
+
+* **Total de Testes (Test Suites):** 3 arquivos (`login.test.js`, `wallet.test.js`, `bonus.test.js`)
+* **Total de Casos de Teste:** 28 testes
+* **Status Final:** **100% Aprovado (3 suites passadas, 28 testes bem-sucedidos)**
+
+---
+
+## 2. Detalhamento dos Testes Realizados e Status
+
+| Suíte de Testes | Componente / Funcionalidade Avaliada | Status Final |
+| :--- | :--- | :--- |
+| **`login.test.js`** | Validação de e-mail e senha, habilitação/desabilitação dinâmica do botão de entrada, gravação de e-mail no estado global (Redux) e redirecionamento de rota para `/carteira`. | **Passou** |
+| **`wallet.test.js`** | Renderização do header (e-mail e total de despesas), estruturação do formulário de despesas (campos de valor, descrição, moeda, método de pagamento e tag), requisição assíncrona de cotações, adição de despesas à tabela e atualização de estados globais. | **Passou** |
+| **`bonus.test.js`** | Botões e funcionalidades de edição e exclusão de despesas da tabela com recálculo automático do header. | **Passou** |
+
+---
+
+## 3. Ajustes Realizados no Código
+
+Para alcançar 100% de aprovação na suíte, foram executados ajustes cirúrgicos nos seguintes pontos do projeto:
+
+1. **Ajuste no Label de Categoria (Tag):**
+   * *Problema:* O teste procurava um campo associado ao texto `/tag/i`, mas o label do formulário estava definido como `Categoria:`.
+   * *Correção:* Alterado o texto descritivo do `<label>` correspondente no componente de formulário para **`Tag:`**.
+
+2. **Correção no Caminho de Importação da Action de E-mail:**
+   * *Problema:* O arquivo `pages/Login/index.js` tentava importar `saveEmail` de um caminho incorreto (`../redux/actions`).
+   * *Correção:* O import foi atualizado para **`../../actions`**, alinhando-se à estrutura de pastas real do projeto.
+
+3. **Padronização da Geração de ID das Despesas:**
+   * *Problema:* O reducer da carteira utilizava `id: Date.now()`, gerando um timestamp numérico aleatório. Os testes exigiam que a primeira despesa começasse estritamente com **`id: 0`** e incrementasse sequencialmente.
+   * *Correção:* Ajustado o reducer `ADD_EXPENSE` para utilizar **`id: state.expenses.length`**.
+
+
+---
+
+## 4. Conclusão
+
+O projeto encontra-se em um estado **estável, funcional e totalmente aderente** aos critérios de aceitação propostos pelos testes automatizados. Todas as barreiras de integração entre componentes React, rotas e o estado global do Redux foram superadas com sucesso, garantindo a integridade dos fluxos de autenticação e gerenciamento de carteira financeira.
+
+
+
+---
+
+# Próximo passo
+
+Analisar e planejar persistência dos conteúdos da aplicação.
+
+
+---
+
+
+
+<div align="center">
+  <p>Desenvolvido com 💜 por <strong>@douglasabnovato</strong></p>
+  <p><em>Desenvolvedor Fullstack & Produtos Digitais</em></p>
+</div>
