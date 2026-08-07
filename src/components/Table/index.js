@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteExpense } from '../../actions';
+import { deleteExpense, editExpense } from '../../actions';
 import './index.css';
 
 function Table() {
@@ -9,6 +9,10 @@ function Table() {
 
   const handleDelete = (id) => {
     dispatch(deleteExpense(id));
+  };
+
+  const handleEdit = (id) => {
+    dispatch(editExpense(id));
   };
 
   return (
@@ -44,7 +48,13 @@ function Table() {
                 <td>{ convertedValue.toFixed(2) }</td>
                 <td>Real</td>
                 <td>
-                  <button type="button" data-testid="edit-btn">Editar</button>
+                  <button
+                    type="button"
+                    data-testid="edit-btn"
+                    onClick={ () => handleEdit(id) }
+                  >
+                    Editar
+                  </button>
                   <button
                     type="button"
                     data-testid="delete-btn"

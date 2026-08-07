@@ -2,6 +2,8 @@ export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const GET_CURRENCIES_SUCCESS = 'GET_CURRENCIES_SUCCESS';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const SAVE_EDITED_EXPENSE = 'SAVE_EDITED_EXPENSE';
 
 // Action de login existente
 export const saveEmail = (email) => ({
@@ -56,4 +58,16 @@ export const fetchNewExpense = (expenseData) => async (dispatch) => {
 export const deleteExpense = (id) => ({
   type: DELETE_EXPENSE,
   id,
+});
+
+// Ativa o modo de edição e guarda o ID da despesa que está sendo editada
+export const editExpense = (id) => ({
+  type: EDIT_EXPENSE,
+  id,
+});
+
+// Salva os novos dados da despesa editada no estado global
+export const saveEditedExpense = (expenseData) => ({
+  type: SAVE_EDITED_EXPENSE,
+  payload: expenseData,
 });

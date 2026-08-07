@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchNewExpense } from '../../actions';
+import { fetchNewExpense, saveEditedExpense } from '../../actions';
 import './index.css';
 
 function WalletForm() {
@@ -11,23 +11,49 @@ function WalletForm() {
   const [tag, setTag] = useState('Alimentação');
 
   const currencies = useSelector((state) => state.wallet.currencies);
+  const editor = useSelector((state) => state.wallet.editor);
+  const idToEdit = useSelector((state) => state.wallet.idToEdit);
+  const expenses = useSelector((state) => state.wallet.expenses);
   const dispatch = useDispatch();
+
+  // Efeito para preencher os campos do formulário quando entrar no modo de edição
+  useEffect(() => {
+    if (editor) {
+      const expenseToEdit = expenses.find((exp) => exp.id === idToEdit);
+      if (expenseToEdit) {
+        setValue(expenseToEdit.value);
+        setDescription(expenseToEdit.description);
+        setCurrency(expenseToEdit.currency);
+        setMethod(expenseToEdit.method);
+        setTag(expenseToEdit.tag);
+      }
+    }
+  }, [editor, idToEdit, expenses]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const expenseData = {
-      id: Date.now(), // ID único garantido
-      value,
-      description,
-      currency,
-      method,
-      tag,
-    };
+    if (editor) {
+      const updatedData = {
+        value,
+        description,
+        currency,
+        method,
+        tag,
+      };
+      dispatch(saveEditedExpense(updatedData));
+    } else {
+      const expenseData = {
+        value,
+        description,
+        currency,
+        method,
+        tag,
+      };
+      dispatch(fetchNewExpense(expenseData));
+    }
 
-    dispatch(fetchNewExpense(expenseData));
-
-    // Limpa os campos após o envio
+    // Limpa os campos após a ação
     setValue('');
     setDescription('');
   };
@@ -102,7 +128,9 @@ function WalletForm() {
         </select>
       </label>
 
-      <button type="submit">Adicionar despesa</button>
+      <button type="submit">
+        { editor ? 'Editar despesa' : 'Adicionar despesa' }
+      </button>
     </form>
   );
 }
