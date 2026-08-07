@@ -818,3 +818,11 @@ Para garantir a estabilidade do código em produção, manutenibilidade e organi
 
 ### 15. Validar com testes e linter
 - Executar suíte completa de testes da Trybe e validação de linter.
+
+
+---
+
+<div align="center">
+  <p>Desenvolvido com 💜 por <strong>@douglasabnovato</strong></p>
+  <p><em>Desenvolvedor Fullstack & Produtos Digitais</em></p>
+</div>
