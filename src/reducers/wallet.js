@@ -1,14 +1,31 @@
+import { GET_CURRENCIES_SUCCESS, ADD_EXPENSE } from '../actions';
+
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
 };
 
-const walletReducer = (state = INITIAL_STATE, action) => {
+const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  // Cases para moedas e despesas serão adicionados nas próximas etapas
+  case GET_CURRENCIES_SUCCESS:
+    return {
+      ...state,
+      currencies: action.currencies,
+    };
+  case ADD_EXPENSE:
+    return {
+      ...state,
+      expenses: [
+        ...state.expenses,
+        {
+          id: state.expenses.length,
+          ...action.payload,
+        },
+      ],
+    };
   default:
     return state;
   }
 };
 
-export default walletReducer;
+export default wallet;

@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
+import WalletForm from '../../components/WalletForm';
+import { fetchCurrencies } from '../../actions';
 import './index.css';
 
 function Wallet() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrencies());
+  }, [dispatch]);
+
   return (
     <div className="wallet-page">
       <Header />
       <main className="wallet-main">
-        {/* Aqui entrará o formulário de despesas e a tabela nas próximas fases */}
-        <h2>Painel da Carteira</h2>
+        <WalletForm />
       </main>
     </div>
   );
 }
-
-Wallet.propTypes = {};
 
 export default Wallet;

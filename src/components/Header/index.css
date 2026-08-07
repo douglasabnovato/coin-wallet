@@ -1,0 +1,56 @@
+.wallet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a202c;
+    color: #ffffff;
+    padding: 16px 32px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-logo-container h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #00b37e;
+    letter-spacing: 0.5px;
+}
+
+.header-info-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+}
+
+.header-info-container span[data-testid="email-field"] {
+    background-color: #2d3748;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.expenses-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #2d3748;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.expenses-container span[data-testid="total-field"] {
+    color: #00b37e;
+    font-weight: 700;
+}
+
+.expenses-container span[data-testid="header-currency-field"] {
+    color: #a0aec0;
+    font-size: 12px;
+    margin-left: 2px;
+}
