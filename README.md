@@ -227,6 +227,7 @@ npm test
 ---
 
 # Requisitos do projeto
+
 ## Lista de requisitos
 
 ### Página de Login
@@ -298,7 +299,11 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - [ ] Esta página deve ser renderizada por um componente chamado ***Wallet***.
 
   ![image carteira](./.github/template/carteira.gif)
+
+
 ---
+
+
 ### Configurando sua página
 
 #### 4. Crie uma página para sua carteira com as seguintes características:
@@ -317,6 +322,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
   * tarefa.
 
 ---
+
+
 ### Header (cabeçalho)
 
 #### 5. Crie um header para a página de carteira contendo as seguintes características:
@@ -349,7 +356,10 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - **Observações da minha resolução**
   * tarefa.
 
+
 ---
+
+
 ### Formulário de adição de Despesa
 
  **Dica:** atente-se ao [formato sugerido pelo React](https://pt-br.reactjs.org/docs/forms.html) para criar formulários.
@@ -396,8 +406,12 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - **Observações da minha resolução**
   * tarefa.
 
+
 ---
+
+
 #### 7. Implemente a lógica para preencher as opções do campo "Moedas", buscando as siglas das moedas da API:
+
 
   * [ ] Ao entrar na página `/carteira`, você deverá fazer uma requisição para a API das moedas e preencher as opções do `<select>` de "Moedas" com os valores retornados. Utilizando as siglas das moedas. (faça a requisição no carregamento da página, filtre a resposta para remover USDT e guarde as moedas em wallet.currencies)
 
@@ -410,7 +424,10 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 - **Observações da minha resolução**
   * tarefa.
 
+
 ----
+
+
 #### 8. Desenvolva a opção de "Adicionar despesa" na sua tabela de gastos
 
   * [ ] O botão de adicionar despesa deve salvar a despesa no estado global e recalcular o total no header. (use uma action para inserir o objeto na lista wallet.expenses e mantenha exchangeRates salvo junto com a despesa)
@@ -536,6 +553,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
   * tarefa.
 
 ---
+
+
 ### Tabela de Gastos
 
 #### 9. Desenvolva uma tabela com os gastos contendo as seguintes características:
@@ -557,6 +576,7 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
     * [ ] Utilize sempre o formato `0.00` (número - ponto - duas casas decimais)
 
 **O que será testado**
+
 ```
 - [ ] A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão.
 - [ ] A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.
@@ -617,6 +637,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 ### Detalhes
 
 - Projeto tem origem no repositório [betrybe](https://github.com/betrybe/douglasnovato-test)
+
+
 ---
 
 #### 📅 Telas Resultado da resolução das tarefas
@@ -634,7 +656,7 @@ Feito com ❤️ por Douglas A B Novato. 👋🏽 [Entre em contato!](https://ww
 ---
 
 
-#### 📅 estrutura de pastas
+#### 📅 Estrutura de Pastas
 
 
 ```text
@@ -714,14 +736,15 @@ Para garantir a estabilidade do código em produção, manutenibilidade e organi
    - Branch de trabalho ativo onde implementamos as issues, telas, componentes e lógicas do MVP da TrybeWallet.
    - É a partir daqui que abrimos os Pull Requests / Merges para a `developer-versao`.
  
- 
 
 
 ---
 
  
 ## Sugestão de ordem de estudo
+
 Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
+
 1. login
 2. Redux
 3. carteira
@@ -739,6 +762,7 @@ Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
 # Plano de Ação para Desenvolvimento - TrybeWallet
 
 ## Visão Geral do Progresso
+
 - [x] **Fase 1:** Entender o escopo do projeto
 - [x] **Fase 2:** Configurar o ambiente inicial
 - [x] **Fase 3:** Compreender a estrutura existente
