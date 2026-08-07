@@ -59,52 +59,56 @@ function WalletForm() {
   };
 
   return (
-    <form onSubmit={ handleSubmit } className="wallet-form">
+    <form onSubmit={handleSubmit} className="wallet-form">
+      {/* 4. Campo de Valor */}
       <label htmlFor="value-input">
         Valor:
         <input
           type="number"
           id="value-input"
           data-testid="value-input"
-          value={ value }
-          onChange={ (e) => setValue(e.target.value) }
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
       </label>
 
+      {/* 5. Campo de Descrição */}
       <label htmlFor="description-input">
         Descrição:
         <input
           type="text"
           id="description-input"
           data-testid="description-input"
-          value={ description }
-          onChange={ (e) => setDescription(e.target.value) }
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </label>
 
+      {/* 6. Campo de Moeda */}
       <label htmlFor="currency-input">
         Moeda:
         <select
           id="currency-input"
           data-testid="currency-input"
-          value={ currency }
-          onChange={ (e) => setCurrency(e.target.value) }
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
         >
           {currencies.map((curr) => (
-            <option key={ curr } value={ curr }>
-              { curr }
+            <option key={curr} value={curr}>
+              {curr}
             </option>
           ))}
         </select>
       </label>
 
+      {/* 7. Campo de Método de Pagamento */}
       <label htmlFor="method-input">
         Método de pagamento:
         <select
           id="method-input"
           data-testid="method-input"
-          value={ method }
-          onChange={ (e) => setMethod(e.target.value) }
+          value={method}
+          onChange={(e) => setMethod(e.target.value)}
         >
           <option value="Dinheiro">Dinheiro</option>
           <option value="Cartão de crédito">Cartão de crédito</option>
@@ -112,13 +116,14 @@ function WalletForm() {
         </select>
       </label>
 
+      {/* 8. Campo de Tag / Categoria */}
       <label htmlFor="tag-input">
-        Categoria:
+        Tag:
         <select
           id="tag-input"
           data-testid="tag-input"
-          value={ tag }
-          onChange={ (e) => setTag(e.target.value) }
+          value={tag}
+          onChange={(e) => setTag(e.target.value)}
         >
           <option value="Alimentação">Alimentação</option>
           <option value="Lazer">Lazer</option>
@@ -129,7 +134,7 @@ function WalletForm() {
       </label>
 
       <button type="submit">
-        { editor ? 'Editar despesa' : 'Adicionar despesa' }
+        {editor ? 'Editar despesa' : 'Adicionar despesa'}
       </button>
     </form>
   );

@@ -38,27 +38,30 @@ function Table() {
             const convertedValue = Number(value) * Number(exchangeRate.ask);
 
             return (
-              <tr key={ id }>
-                <td>{ description }</td>
-                <td>{ tag }</td>
-                <td>{ method }</td>
-                <td>{ Number(value).toFixed(2) }</td>
-                <td>{ exchangeRate.name.split('/')[0] || currency }</td>
-                <td>{ Number(exchangeRate.ask).toFixed(2) }</td>
-                <td>{ convertedValue.toFixed(2) }</td>
+              <tr key={id}>
+                <td>{description}</td>
+                <td>{tag}</td>
+                <td>{method}</td>
+                <td>{value}</td>
+                <td>{exchangeRate.name.split('/')[0] || currency}</td>
+                <td>{Number(exchangeRate.ask).toFixed(2)}</td>
+                <td>{convertedValue.toFixed(2)}</td>
                 <td>Real</td>
                 <td>
+                  {/* 9. Botão de Editar */}
                   <button
                     type="button"
                     data-testid="edit-btn"
-                    onClick={ () => handleEdit(id) }
+                    onClick={() => handleEdit(id)}
                   >
                     Editar
                   </button>
+
+                  {/* 10. Botão de Excluir */}
                   <button
                     type="button"
                     data-testid="delete-btn"
-                    onClick={ () => handleDelete(id) }
+                    onClick={() => handleDelete(id)}
                   >
                     Excluir
                   </button>

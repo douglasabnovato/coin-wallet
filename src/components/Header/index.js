@@ -19,15 +19,20 @@ function Header() {
         <h2>TrybeWallet</h2>
       </div>
       <div className="header-info-container">
+        {/* 1. Email do usuário */}
         <span data-testid="email-field">
-          Email: 
-          { email }
+          Email: {email}
         </span>
+
         <div className="expenses-container">
           <span>Despesa Total: R$ </span>
+
+          {/* 2. Valor total das despesas */}
           <span data-testid="total-field">
-            { totalExpenses.toFixed(2) }
+            {totalExpenses.toFixed(2)}
           </span>
+
+          {/* 3. Moeda de conversão */}
           <span data-testid="header-currency-field">
             BRL
           </span>

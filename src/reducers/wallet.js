@@ -26,7 +26,7 @@ const wallet = (state = INITIAL_STATE, action) => {
       expenses: [
         ...state.expenses,
         {
-          id: Date.now(),
+          id: state.expenses.length, 
           ...action.payload,
         },
       ],

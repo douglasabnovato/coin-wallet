@@ -637,7 +637,7 @@ Feito com ❤️ por Douglas A B Novato. 👋🏽 [Entre em contato!](https://ww
 #### 📅 estrutura de pastas
 
 
-
+```text
 trybe/
 ├── .editorconfig
 ├── .eslintignore
@@ -690,7 +690,7 @@ trybe/
 │   └── setupTests.js
 ├── trybe.yml
 └── ...
-
+```
 
 ---
 
@@ -747,11 +747,11 @@ Para garantir a estabilidade do código em produção, manutenibilidade e organi
 - [x] **Fase 8:** Buscar as moedas na API (Thunk e filtragem de USDT)
 - [x] **Fase 9:** Implementar o formulário de despesas (com atributos data-testid e estilização)
 - [x] **Fase 10:** Salvar despesas no estado global com cotações (atualização automática do Header)
-- [ ] **Fase 11:** Renderizar a tabela de gastos
-- [ ] **Fase 12:** Implementar remoção de despesas
-- [ ] **Fase 13:** Implementar edição de despesas
-- [ ] **Fase 14:** Ajustar detalhes visuais e semânticos
-- [ ] **Fase 15:** Validar com testes e linter
+- [x] **Fase 11:** Renderizar a tabela de gastos
+- [x] **Fase 12:** Implementar remoção de despesas
+- [x] **Fase 13:** Implementar edição de despesas
+- [x] **Fase 14:** Ajustar detalhes visuais e semânticos
+- [x] **Fase 15:** Validar com testes e linter
 
 ---
 
