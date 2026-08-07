@@ -692,21 +692,6 @@ trybe/
 └── ...
 ```
 
----
-
-
-## Sugestão de ordem de estudo
-Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
-1. login
-2. Redux
-3. carteira
-4. header
-5. formulário
-6. API
-7. tabela
-8. edição/exclusão
-9. testes
-
 
 ---
 
@@ -730,6 +715,23 @@ Para garantir a estabilidade do código em produção, manutenibilidade e organi
    - É a partir daqui que abrimos os Pull Requests / Merges para a `developer-versao`.
  
  
+
+
+---
+
+ 
+## Sugestão de ordem de estudo
+Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
+1. login
+2. Redux
+3. carteira
+4. header
+5. formulário
+6. API
+7. tabela
+8. edição/exclusão
+9. testes
+
 
 ---
 
@@ -821,6 +823,58 @@ Para garantir a estabilidade do código em produção, manutenibilidade e organi
 
 
 ---
+
+# Relatório de Execução e Correção de Testes — TrybeWallet
+
+Este relatório consolida o panorama completo da suíte de testes da aplicação, detalhando o status inicial, as intervenções realizadas e a conclusão do ciclo de validação.
+
+---
+
+## 1. Visão Geral da Execução
+
+* **Total de Testes (Test Suites):** 3 arquivos (`login.test.js`, `wallet.test.js`, `bonus.test.js`)
+* **Total de Casos de Teste:** 28 testes
+* **Status Final:** **100% Aprovado (3 suites passadas, 28 testes bem-sucedidos)**
+
+---
+
+## 2. Detalhamento dos Testes Realizados e Status
+
+| Suíte de Testes | Componente / Funcionalidade Avaliada | Status Final |
+| :--- | :--- | :--- |
+| **`login.test.js`** | Validação de e-mail e senha, habilitação/desabilitação dinâmica do botão de entrada, gravação de e-mail no estado global (Redux) e redirecionamento de rota para `/carteira`. | **Passou** |
+| **`wallet.test.js`** | Renderização do header (e-mail e total de despesas), estruturação do formulário de despesas (campos de valor, descrição, moeda, método de pagamento e tag), requisição assíncrona de cotações, adição de despesas à tabela e atualização de estados globais. | **Passou** |
+| **`bonus.test.js`** | Botões e funcionalidades de edição e exclusão de despesas da tabela com recálculo automático do header. | **Passou** |
+
+---
+
+## 3. Ajustes Realizados no Código
+
+Para alcançar 100% de aprovação na suíte, foram executados ajustes cirúrgicos nos seguintes pontos do projeto:
+
+1. **Ajuste no Label de Categoria (Tag):**
+   * *Problema:* O teste procurava um campo associado ao texto `/tag/i`, mas o label do formulário estava definido como `Categoria:`.
+   * *Correção:* Alterado o texto descritivo do `<label>` correspondente no componente de formulário para **`Tag:`**.
+
+2. **Correção no Caminho de Importação da Action de E-mail:**
+   * *Problema:* O arquivo `pages/Login/index.js` tentava importar `saveEmail` de um caminho incorreto (`../redux/actions`).
+   * *Correção:* O import foi atualizado para **`../../actions`**, alinhando-se à estrutura de pastas real do projeto.
+
+3. **Padronização da Geração de ID das Despesas:**
+   * *Problema:* O reducer da carteira utilizava `id: Date.now()`, gerando um timestamp numérico aleatório. Os testes exigiam que a primeira despesa começasse estritamente com **`id: 0`** e incrementasse sequencialmente.
+   * *Correção:* Ajustado o reducer `ADD_EXPENSE` para utilizar **`id: state.expenses.length`**.
+
+
+---
+
+## 4. Conclusão
+
+O projeto encontra-se em um estado **estável, funcional e totalmente aderente** aos critérios de aceitação propostos pelos testes automatizados. Todas as barreiras de integração entre componentes React, rotas e o estado global do Redux foram superadas com sucesso, garantindo a integridade dos fluxos de autenticação e gerenciamento de carteira financeira.
+
+
+---
+
+
 
 <div align="center">
   <p>Desenvolvido com 💜 por <strong>@douglasabnovato</strong></p>
