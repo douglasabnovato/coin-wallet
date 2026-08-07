@@ -14,6 +14,16 @@ Nesse readme teremos as especificações do projeto apresentados e as anotaçõe
 
 Aqui você vai encontrar os detalhes de como desenvolver seu projeto a partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos. Clone este repositório, abra uma branch sua e crie uma Pull Request a partir dela. O nosso **avaliador automatizado** irá rodar nela através da integração com o GitHub e será importante para a análise da sua entrega.
 
+## Como este README foi organizado
+
+Este README foi estruturado em três blocos para apoiar a implementação:
+
+1. Contexto e entregáveis: apresenta o objetivo do projeto e o que deve ser entregue.
+2. Instruções de ambiente: reúne os passos de instalação, testes, linter e integração com a API.
+3. Requisitos detalhados: preserva as especificações do projeto e adiciona observações técnicas em parênteses para orientar decisões de arquitetura, estado global e componentes.
+
+A implementação esperada segue este fluxo: Login → estado global com Redux → página da carteira → header → formulário de despesas → tabela de gastos → edição e exclusão.
+
 ---
 
 # Sumário
@@ -227,11 +237,11 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 1. Crie uma página inicial de login com os seguintes campos e características:
 
-  - [ ] A rota para esta página deve ser ‘/’.
+  - [ ] A rota para esta página deve ser ‘/’. (use React Router e defina a rota principal em uma página dedicada de login)
 
-  - [ ] Você deve criar um local para que a pessoa usuária insira seu email e senha. Utilize o atributo `data-testid="email-input"` para o email e `data-testid="password-input"` para a senha.
+  - [ ] Você deve criar um local para que a pessoa usuária insira seu email e senha. Utilize o atributo `data-testid="email-input"` para o email e `data-testid="password-input"` para a senha. (mantenha os campos como controlled inputs e use os data-testid exigidos pelos testes)
 
-  - [ ] Crie um botão com o texto ‘Entrar’.
+  - [ ] Crie um botão com o texto ‘Entrar’. (prefira um elemento button semântico e controle a habilitação via estado local)
 
 - **O que será testado**
   ```
@@ -247,13 +257,13 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 2. Realize as seguintes verificações nos campos de email, senha e botão:
 
-  - [ ] O email está no formato válido, como 'alguem@alguem.com'.
+  - [ ] O email está no formato válido, como 'alguem@alguem.com'. (valide com expressão regular simples ou uma biblioteca de validação, sem depender de um backend)
 
-  - [ ] A senha possui 6 ou mais caracteres.
+  - [ ] A senha possui 6 ou mais caracteres. (defina a regra no estado do formulário e desabilite o botão enquanto a validação não passar)
 
-  - [ ] Salve o email no estado da aplicação, com a chave ***email***, assim que a pessoa usuária logar.
+  - [ ] Salve o email no estado da aplicação, com a chave ***email***, assim que a pessoa usuária logar. (dispare uma action para o reducer de usuário e mantenha o estado global coerente)
 
-  - [ ] A rota deve ser mudada para '/carteira' após o clique no botão '**Entrar**'.
+  - [ ] A rota deve ser mudada para '/carteira' após o clique no botão '**Entrar**'. (use navegação programática com history ou navigate após a autenticação bem-sucedida)
 
 - **O que será testado**
   ```
@@ -267,9 +277,9 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 3. Utilize o Redux para salvar no estado global as informações da pessoa logada
 
-  - [ ] Salve o email no estado da aplicação, com a chave email, assim que o usuário logar.
+  - [ ] Salve o email no estado da aplicação, com a chave email, assim que o usuário logar. (mantenha a estrutura base do estado em user.email e wallet.{currencies, expenses})
 
-  - [ ] A rota deve ser mudada para `/carteira` quando o login for efetuado com sucesso.
+  - [ ] A rota deve ser mudada para `/carteira` quando o login for efetuado com sucesso. (a navegação é um efeito colateral do sucesso do login, então pode ser tratada no evento do botão)
 
 - **O que será testado**
   ```
@@ -293,9 +303,9 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 4. Crie uma página para sua carteira com as seguintes características:
 
-  * [ ] A rota para esta página deve ser `/carteira`
+  * [ ] A rota para esta página deve ser `/carteira` (a página deve ser renderizada por uma rota específica e não depender do componente App para isso)
 
-  * [ ] O componente deve se chamar Wallet e estar localizado na pasta `src/pages` no arquivo `Wallet.js`
+  * [ ] O componente deve se chamar Wallet e estar localizado na pasta `src/pages` no arquivo `Wallet.js` (mantenha a organização em pastas e exporte o componente como default)
 
 - **O que será testado**
   ```
@@ -311,7 +321,7 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 5. Crie um header para a página de carteira contendo as seguintes características:
 
-  * [ ] Um elemento que exiba o email da pessoa usuária que fez login.
+  * [ ] Um elemento que exiba o email da pessoa usuária que fez login. (leia o valor de user.email diretamente do estado global)
 
     * [ ] Adicione o atributo `data-testid="email-field"`.
 
@@ -319,13 +329,13 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
   ***Dica: você deve pegar o email do estado global da aplicação (no Redux)***
   ```
 
-  * [ ] Um campo com a despesa total gerada pela lista de gastos.
+  * [ ] Um campo com a despesa total gerada pela lista de gastos. (calcule o total a partir de wallet.expenses e atualize sempre que uma despesa for adicionada, removida ou editada)
 
     * [ ] Adicione o atributo `data-testid="total-field"`.
 
     * [ ] Inicialmente esse campo deve exibir o valor `0`
 
-  * [ ] Um campo que mostre qual câmbio está sendo utilizado, que será neste caso será 'BRL'.
+  * [ ] Um campo que mostre qual câmbio está sendo utilizado, que será neste caso será 'BRL'. (use um valor fixo para o header, pois a moeda de conversão da aplicação é o real)
 
     * [ ] Adicione o atributo `data-testid="header-currency-field"`.
 
@@ -355,7 +365,7 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 6. Desenvolva um formulário para adicionar uma despesa contendo as seguintes características:
 
-  * [ ] Um campo para adicionar valor da despesa.
+  * [ ] Um campo para adicionar valor da despesa. (o valor deve ser armazenado como string ou número, mas deve ser consistente com os testes e com a renderização da tabela)
 
     * [ ] O campo deverá ter a label `Valor`.
 
@@ -389,7 +399,7 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 ---
 #### 7. Implemente a lógica para preencher as opções do campo "Moedas", buscando as siglas das moedas da API:
 
-  * [ ] Ao entrar na página `/carteira`, você deverá fazer uma requisição para a API das moedas e preencher as opções do `<select>` de "Moedas" com os valores retornados. Utilizando as siglas das moedas.
+  * [ ] Ao entrar na página `/carteira`, você deverá fazer uma requisição para a API das moedas e preencher as opções do `<select>` de "Moedas" com os valores retornados. Utilizando as siglas das moedas. (faça a requisição no carregamento da página, filtre a resposta para remover USDT e guarde as moedas em wallet.currencies)
 
   * [ ] As opções devem conter os valores: 'USD', 'CAD', 'EUR', 'GBP', 'ARS', 'BTC', 'LTC', 'JPY', 'CHF', 'AUD', 'CNY', 'ILS', 'ETH' e 'XRP'.
 
@@ -402,6 +412,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 ----
 #### 8. Desenvolva a opção de "Adicionar despesa" na sua tabela de gastos
+
+  * [ ] O botão de adicionar despesa deve salvar a despesa no estado global e recalcular o total no header. (use uma action para inserir o objeto na lista wallet.expenses e mantenha exchangeRates salvo junto com a despesa)
 
   * [ ] Desenvolva a funcionalidade do botão "Adicionar despesa" de modo que ao clicar no botão, as seguintes ações sejam executadas:
 
@@ -528,6 +540,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 9. Desenvolva uma tabela com os gastos contendo as seguintes características:
 
+  * [ ] A tabela deve ser renderizada a partir do estado wallet.expenses. (cada linha representa uma despesa e deve exibir valor, moeda, câmbio, valor convertido e moeda de conversão)
+
   * [ ] A tabela deve possuir um cabeçalho **exatamente** com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido, Moeda de conversão e Editar/Excluir
 
   * [ ] Atente-se ao formato semântico da tabela. Utilize os elementos corretos para o cabeçalho, para as linhas e para as células.
@@ -554,6 +568,8 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 
 #### 10. Crie um botão para deletar uma despesa da tabela contendo as seguintes características:
 
+  * [ ] O botão deve remover a linha correspondente do estado global e atualizar o total. (use o id da despesa para filtrar a lista e recomputar a soma)
+
    ![image btnExcluir](./.github/template/btnExcluir.gif)
 
   * [ ] O botão deve estar na linha da tabela e deve possuir `data-testid="delete-btn"`.
@@ -573,6 +589,9 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 ### Bônus
 
 #### 11. Crie um botão para editar uma despesa da tabela contendo as seguintes características:
+
+  * [ ] O botão deve permitir editar uma despesa já cadastrada. (prefira um fluxo de edição que preencha o formulário com os valores atuais e substitua a despesa no estado ao salvar)
+
 
    ![image btnEditar](./.github/template/btnEditar.gif)
 
@@ -609,3 +628,180 @@ Crie uma página para que a pessoa usuária se identifique, com email e senha. E
 </p>
 
 Feito com ❤️ por Douglas A B Novato. 👋🏽 [Entre em contato!](https://www.linkedin.com/in/douglasabnovato/)
+
+
+
+---
+
+
+#### 📅 estrutura de pastas
+
+
+
+trybe/
+├── .editorconfig
+├── .eslintignore
+├── .eslintrc.json
+├── .git/
+├── .github/
+├── .gitignore
+├── .stylelintignore
+├── .stylelintrc.json
+├── .trybe/
+├── node_modules/
+├── package-lock.json
+├── package.json
+├── public/
+│   ├── index.html
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── ...
+├── README.md
+├── src/
+│   ├── actions/
+│   │   └── index.js
+│   ├── components/
+│   │   └── Header/
+│   │       ├── index.css
+│   │       └── index.js
+│   ├── images/
+│   │   └── logo.png
+│   ├── pages/
+│   │   ├── Login/
+│   │   │   ├── index.css
+│   │   │   └── index.js
+│   │   └── Wallet/
+│   │       ├── index.css
+│   │       └── index.js
+│   ├── reducers/
+│   │   ├── index.js
+│   │   ├── user.js
+│   │   └── wallet.js
+│   ├── store/
+│   │   └── index.js
+│   ├── tests/
+│   │   ├── bonus.test.js
+│   │   ├── login.test.js
+│   │   ├── mockData.js
+│   │   ├── testConfig.js
+│   │   └── wallet.test.js
+│   ├── index.js
+│   ├── logo.svg
+│   └── setupTests.js
+├── trybe.yml
+└── ...
+
+
+
+---
+
+## Plano de ação para desenvolvimento
+
+### 1. Entender o escopo do projeto
+- Ler o README completo e identificar os requisitos obrigatórios e bônus.
+- Verificar quais funcionalidades principais a aplicação precisa ter:
+  - login
+  - carteira
+  - formulário de despesas
+  - tabela de gastos
+  - edição e exclusão
+
+### 2. Configurar o ambiente inicial
+- Instalar as dependências com `npm install`.
+- Rodar o projeto localmente com `npm start`.
+- Executar os testes iniciais com `npm test` para ver o estado atual.
+- Confirmar se o projeto já vem com estrutura base de React + Redux.
+
+### 3. Compreender a estrutura existente
+- Verificar as pastas principais:
+  - `src/pages`
+  - `src/components`
+  - `src/reducers`
+  - `src/actions`
+  - `src/store`
+- Identificar os componentes já criados e o que ainda falta implementar.
+- Entender como o estado global está organizado.
+
+### 4. Implementar a tela de login
+- Criar a página inicial em rota `/`.
+- Adicionar os campos de email e senha.
+- Criar o botão “Entrar”.
+- Implementar validação de email e senha.
+- Garantir que o botão fique desabilitado enquanto os dados estiverem inválidos.
+
+### 5. Integrar Redux no fluxo de login
+- Criar ou ajustar o reducer de usuário.
+- Salvar o email no estado global.
+- Redirecionar para a rota `/carteira` após o login bem-sucedido.
+- Confirmar que a estrutura do estado global siga o formato esperado.
+
+### 6. Criar a página da carteira
+- Criar o componente `Wallet` na pasta correta.
+- Definir a rota `/carteira`.
+- Garantir que a página seja renderizada corretamente.
+
+### 7. Construir o header da carteira
+- Exibir o email do usuário logado.
+- Exibir o valor total das despesas.
+- Exibir a moeda de conversão, que no caso é BRL.
+
+### 8. Implementar o formulário de despesas
+- Criar os campos:
+  - valor
+  - descrição
+  - moeda
+  - método de pagamento
+  - tag
+- Montar os selects com as opções esperadas.
+- Preparar o formulário para capturar os dados da despesa.
+
+### 9. Buscar as moedas na API
+- Fazer a requisição à API de cotações.
+- Filtrar as moedas conforme o requisito.
+- Preencher o select de moedas com as siglas retornadas.
+- Remover a moeda `USDT`.
+
+### 10. Salvar despesas no estado global
+- Criar a lógica para adicionar uma despesa.
+- Armazenar a despesa no estado `wallet.expenses`.
+- Guardar também as informações de câmbio recebidas da API.
+- Atualizar o total no header após adicionar.
+
+### 11. Renderizar a tabela de gastos
+- Criar a tabela com as colunas exigidas.
+- Popular a tabela com os dados vindos do estado.
+- Exibir os valores de câmbio, valor convertido e moeda de conversão.
+
+### 12. Implementar remoção de despesas
+- Criar o botão de excluir.
+- Remover a despesa do estado global.
+- Recalcular o total após a remoção.
+
+### 13. Implementar edição de despesas
+- Criar o botão de editar.
+- Permitir preencher o formulário com os dados da despesa selecionada.
+- Atualizar a despesa no estado após salvar a edição.
+
+### 14. Ajustar detalhes visuais e semânticos
+- Melhorar o layout da aplicação.
+- Garantir que os elementos tenham os nomes e `data-testid` esperados pelos testes.
+- Revisar acessibilidade básica dos formulários e botões.
+
+### 15. Validar com testes e linter
+- Rodar os testes unitários.
+- Corrigir falhas apontadas.
+- Rodar o linter.
+- Ajustar qualquer problema de estilo ou boas práticas.
+
+## Sugestão de ordem de estudo
+Se quiser seguir de forma ainda mais tranquila, recomendo fazer na ordem:
+1. login
+2. Redux
+3. carteira
+4. header
+5. formulário
+6. API
+7. tabela
+8. edição/exclusão
+9. testes
+
