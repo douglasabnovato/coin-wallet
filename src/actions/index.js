@@ -1,7 +1,7 @@
 export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const GET_CURRENCIES_SUCCESS = 'GET_CURRENCIES_SUCCESS';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
-
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 // Action de login existente
 export const saveEmail = (email) => ({
@@ -51,3 +51,9 @@ export const fetchNewExpense = (expenseData) => async (dispatch) => {
     console.error('Erro ao buscar cotações para a despesa:', error);
   }
 };
+
+// Action síncrona para deletar a despesa pelo ID
+export const deleteExpense = (id) => ({
+  type: DELETE_EXPENSE,
+  id,
+});

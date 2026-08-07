@@ -1,9 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteExpense } from '../../actions';
 import './index.css';
 
 function Table() {
   const expenses = useSelector((state) => state.wallet.expenses);
+  const dispatch = useDispatch();
+
+  const handleDelete = (id) => {
+    dispatch(deleteExpense(id));
+  };
 
   return (
     <div className="table-container">
@@ -38,9 +44,14 @@ function Table() {
                 <td>{ convertedValue.toFixed(2) }</td>
                 <td>Real</td>
                 <td>
-                  {/* Botões de edição e exclusão entrarão nas próximas fases */}
                   <button type="button" data-testid="edit-btn">Editar</button>
-                  <button type="button" data-testid="delete-btn">Excluir</button>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => handleDelete(id) }
+                  >
+                    Excluir
+                  </button>
                 </td>
               </tr>
             );

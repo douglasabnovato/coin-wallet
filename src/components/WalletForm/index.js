@@ -17,6 +17,7 @@ function WalletForm() {
     e.preventDefault();
 
     const expenseData = {
+      id: Date.now(), // ID único garantido
       value,
       description,
       currency,
