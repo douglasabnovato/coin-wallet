@@ -1,3 +1,9 @@
+# Coin Wallet 
+
+**Coin Wallet | Controle de Gastos e Conversão de Moedas**
+
+Uma solução intuitiva para gestão de despesas pessoais com suporte a múltiplas moedas. A aplicação permite adicionar, editar e excluir registros de gastos, realizando conversões automáticas baseadas em taxas de câmbio em tempo real. Projetada para ser rápida, escalável e fácil de manter.
+
 ## Detalhes do Projeto
 
 Nesse readme teremos as especificações do projeto apresentados e as anotações registradas durante a construção e desenvolvimento do projeto.
