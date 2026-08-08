@@ -1,44 +1,119 @@
-.container{
-  width: 20vw;
-  border: 1px solid #04AA6D;
-  border-radius: 5px;
-  padding: 25px;
-  margin: 50px auto 0;
+/* Fundo com gradiente moderno e vivo */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #04aa6d 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.image-logo {
-  width: 75%;
-  margin: 0 auto 35px;
-}
-
-.form-field-email, .form-field-password{
+/* Card centralizado com efeito flutuante e elegância */
+.container {
   width: 100%;
-  padding: 12px 20px;
-  margin: 3px 0;
-  display: inline-block;
-  border: 1px solid #04AA6D;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 45px 35px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 1px rgba(255, 255, 255, 0.5) inset;
   box-sizing: border-box;
+  animation: fadeIn 0.6s ease-out;
 }
 
-.form-error{
-  color: red;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 13px 0 8px;
-  border: none;
+/* Título ou Logo opcional dentro do form se quiser dar charme */
+.container form::before {
+  content: "Coin Wallet";
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: -0.5px;
+}
+
+.container form::after {
+  content: "Gerencie suas finanças com inteligência";
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 25px;
+}
+
+/* Inputs elegantes com transição suave */
+.form-field-email, 
+.form-field-password {
   width: 100%;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #1e293b;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  opacity: 0.8;
+.form-field-email::placeholder, 
+.form-field-password::placeholder {
+  color: #94a3b8;
+}
+
+.form-field-email:focus, 
+.form-field-password:focus {
+  border-color: #04AA6D;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(4, 170, 109, 0.15);
+}
+
+/* Botão encantador com efeito de elevação */
+button {
+  background: linear-gradient(135deg, #04AA6D 0%, #038858 100%);
+  color: white;
+  padding: 15px 20px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(4, 170, 109, 0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(4, 170, 109, 0.4);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 button:disabled {
-  opacity: 0.2;
-  pointer-events: none;
+  background: #cbd5e1;
+  color: #94a3b8;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
