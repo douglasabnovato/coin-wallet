@@ -1,3 +1,4 @@
+/* Estilos do cabeçalho da carteira (contraste AA) */
 .wallet-header {
     display: flex;
     justify-content: space-between;
@@ -10,7 +11,7 @@
     box-sizing: border-box;
 }
 
-.header-logo-container h2 {
+.header-logo-container h1 {
     margin: 0;
     font-size: 22px;
     font-weight: 700;
@@ -45,7 +46,7 @@
 }
 
 .expenses-container span[data-testid="total-field"] {
-    color: #00b37e;
+    color: #4ade80;
     font-weight: 700;
 }
 
@@ -54,3 +55,10 @@
     font-size: 12px;
     margin-left: 2px;
 }
+
+.header-exit { color: #e2e8f0; text-decoration: underline; }
+@media (max-width: 720px) {
+    .wallet-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
+    .header-info-container { flex-wrap: wrap; gap: 12px; }
+}
+/* Fim de Header/index.css */

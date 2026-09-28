@@ -1,3 +1,4 @@
+/* Estilos de WalletForm */
 .wallet-form {
   display: flex;
   flex-wrap: wrap;
@@ -35,8 +36,8 @@
 
 .wallet-form input:focus,
 .wallet-form select:focus {
-  border-color: #00b37e;
-  box-shadow: 0 0 0 3px rgba(0, 179, 126, 0.15);
+  border-color: #047857;
+  box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.55);
   background-color: #ffffff;
 }
 
@@ -59,4 +60,4 @@
 
 .wallet-form button:active {
   background-color: #015f43;
-}
+}/* Fim de WalletForm/index.css */

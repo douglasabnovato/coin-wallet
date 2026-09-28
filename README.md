@@ -4,6 +4,32 @@
 
 Uma solução intuitiva para gestão de despesas pessoais com suporte a múltiplas moedas. A aplicação permite adicionar, editar e excluir registros de gastos, realizando conversões automáticas baseadas em taxas de câmbio em tempo real. Projetada para ser rápida, escalável e fácil de manter.
 
+## Versão 2.0 (revisão de qualidade)
+
+- Build com **Vite 8** e testes com **Vitest** (o CRA 3 com `--openssl-legacy-provider` não roda no Node 20)
+- **28/28** requisitos do avaliador passando (antes 27/28) + 5 testes novos
+- Despesas e e-mail salvos no navegador (antes tudo sumia ao recarregar)
+- Id da despesa não se repete depois de excluir (antes a edição podia alterar a linha errada)
+- Mensagem na tela quando a API de cotações falha; valor zero ou vazio não é aceito
+- Acessibilidade WCAG AA (axe-core sem violações) e layout responsivo
+
+### Como executar
+
+```bash
+npm install
+npm run dev     # http://localhost:5173
+npm test        # 33 testes
+npm run build   # gera build/ (publicado no GitHub Pages pelo workflow)
+```
+
+### Em produção
+
+- URL: https://douglasabnovato.github.io/coin-wallet/
+- Hospedagem: GitHub Pages (gratuito), publicado pelo GitHub Actions a cada push na `main`
+- Passo a passo: [docs/DEPLOY.md](docs/DEPLOY.md)
+
+Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
+
 ## Detalhes do Projeto
 
 Nesse readme teremos as especificações do projeto apresentados e as anotações registradas durante a construção e desenvolvimento do projeto.

@@ -1,3 +1,4 @@
+/* Estilos de Table */
 .table-container {
   margin: 20px auto;
   max-width: 1200px;
@@ -49,4 +50,4 @@
 .wallet-table button[data-testid="delete-btn"] {
   background-color: #e53e3e;
   color: #ffffff;
-}
+}/* Fim de Table/index.css */
