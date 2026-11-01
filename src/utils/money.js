@@ -11,4 +11,10 @@ export const totalBRL = (expenses) => (expenses.reduce((acc, e) => acc + convert
 
 /* Valor já convertido formatado com duas casas */
 export const convertedBRL = (expense) => (convertedCents(expense) / 100).toFixed(2);
+
+/* Data e hora da cotação, como a API informou (AAAA-MM-DD HH:MM:SS), em dd/mm/aaaa hh:mm */
+export const rateDate = (expense) => {
+  const match = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}:\d{2})/.exec(expense.exchangeRates?.[expense.currency]?.create_date || '');
+  return match ? `${match[3]}/${match[2]}/${match[1]} ${match[4]}` : 'Não informada';
+};
 /* Fim de money.js */
