@@ -7,7 +7,7 @@ import Wallet from '../pages/Wallet';
 import walletReducer, { nextId } from '../reducers/wallet';
 import { addExpense, deleteExpense } from '../actions';
 import { loadState, saveState } from '../store/persist';
-import { totalBRL } from '../utils/money';
+import { rateDate, totalBRL } from '../utils/money';
 import { renderWithRouterAndStore } from './testConfig';
 
 afterEach(() => { vi.restoreAllMocks(); localStorage.clear(); });
@@ -33,6 +33,25 @@ describe('regras da carteira', () => {
     expect(loadState().wallet.expenses).toHaveLength(1);
     localStorage.setItem('coin-wallet.v1', '{quebrado');
     expect(loadState()).toBeUndefined();
+  });
+});
+
+describe('data da cotação', () => {
+  test('mostra a data e a hora vindas da API', () => {
+    const expense = { currency: 'USD', exchangeRates: { USD: { create_date: '2026-10-30 19:00:08' } } };
+    expect(rateDate(expense)).toBe('30/10/2026 19:00');
+  });
+
+  test('sem data válida informa que não há', () => {
+    expect(rateDate({ currency: 'USD', exchangeRates: { USD: {} } })).toBe('Não informada');
+    expect(rateDate({ currency: 'USD' })).toBe('Não informada');
+  });
+
+  test('a tabela exibe a data da cotação da despesa', () => {
+    const expenses = [{ id: 0, value: '1', description: 'Café', currency: 'USD', method: 'Dinheiro', tag: 'Lazer', exchangeRates: { USD: { ask: '5', name: 'Dólar/Real', create_date: '2026-10-30 19:00:08' } } }];
+    renderWithRouterAndStore(<Wallet />, '/carteira', { wallet: { currencies: [], expenses, editor: false, idToEdit: 0 } });
+    expect(screen.getByRole('columnheader', { name: 'Data da cotação' })).toBeTruthy();
+    expect(screen.getByRole('cell', { name: '30/10/2026 19:00' })).toBeTruthy();
   });
 });
 

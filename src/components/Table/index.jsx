@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteExpense, editExpense } from '../../actions';
-import { convertedBRL, rateOf } from '../../utils/money';
+import { convertedBRL, rateDate, rateOf } from '../../utils/money';
 import './index.css';
 
 function Table() {
@@ -26,6 +26,7 @@ function Table() {
             <th scope="col">Valor</th>
             <th scope="col">Moeda</th>
             <th scope="col">Câmbio utilizado</th>
+            <th scope="col">Data da cotação</th>
             <th scope="col">Valor convertido</th>
             <th scope="col">Moeda de conversão</th>
             <th scope="col">Editar/Excluir</th>
@@ -43,6 +44,7 @@ function Table() {
                 <td>{value}</td>
                 <td>{name ? name.split('/')[0] : currency}</td>
                 <td>{rateOf(expense).toFixed(2)}</td>
+                <td>{rateDate(expense)}</td>
                 <td>{convertedBRL(expense)}</td>
                 <td>Real</td>
                 <td>
