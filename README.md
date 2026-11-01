@@ -19,14 +19,15 @@ Uma solução intuitiva para gestão de despesas pessoais com suporte a múltipl
 npm install
 npm run dev     # http://localhost:5173
 npm test        # 33 testes
-npm run build   # gera build/ (publicado no GitHub Pages pelo workflow)
+npm run build   # gera build/, que a Netlify publica
 ```
 
 ### Em produção
 
-- URL: https://douglasabnovato.github.io/coin-wallet/
-- Hospedagem: GitHub Pages (gratuito), publicado pelo GitHub Actions a cada push na `main`
-- Passo a passo: [docs/DEPLOY.md](docs/DEPLOY.md)
+- URL: https://coin-wallet-app.netlify.app/
+- Hospedagem: Netlify, publicada a cada push na `main`
+- Critérios do MVP: [docs/MVP.md](docs/MVP.md)
+- Histórico do plano anterior, para o GitHub Pages: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
 
