@@ -18,7 +18,7 @@ Uma solução intuitiva para gestão de despesas pessoais com suporte a múltipl
 ```bash
 npm install
 npm run dev     # http://localhost:5173
-npm test        # 33 testes
+npm test        # 36 testes
 npm run build   # gera build/, que a Netlify publica
 ```
 
