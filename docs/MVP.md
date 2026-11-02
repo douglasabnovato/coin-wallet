@@ -18,8 +18,8 @@
 | 4 | Escopo enxuto | O que não entra está registrado | Atende: tudo fica no navegador |
 | 5 | Medição de uso | A métrica principal é coletada | Não atende: nada coleta uso |
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: falha de cotação e valor inválido têm mensagem; recarregar em `/carteira` corrigido em PR |
-| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não medido neste ciclo |
-| 8 | Acessibilidade básica | Lighthouse e teclado | Parcial: axe sem violações segundo o README; teclado não testado |
+| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Parcial: 1,55 s na única execução válida do Lighthouse no site publicado; as outras 2 falharam ao pintar |
+| 8 | Acessibilidade básica | Lighthouse e teclado | Parcial: login com Lighthouse 100, axe sem violações e foco visível em todos os elementos alcançados por Tab (2 elementos); carteira não testada por teclado |
 | 9 | Segurança e conformidade | Riscos decididos; termos de terceiros cumpridos | Atende: não há senha real nem servidor; a AwesomeAPI responde com CORS liberado |
 | 10 | Entrega confiável | Publicação só depois de CI verde | Parcial: a Netlify publica a `main` sem esperar o CI; `main` sem proteção |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 33 testes no CI |
@@ -31,10 +31,14 @@
 
 | # | Tarefa | Situação |
 |---|---|---|
-| 1 | Tratar deep link e recarga na Netlify | PR aberto |
-| 2 | Corrigir a hospedagem no README | PR aberto |
-| 3 | Mostrar a data da cotação usada | Próximo ciclo |
+| 1 | Tratar deep link e recarga na Netlify | Feito |
+| 2 | Corrigir a hospedagem no README | Feito |
+| 3 | Mostrar a data da cotação usada | Feito |
 
 ## 3. Fora do MVP
 
 Contas reais, sincronização entre aparelhos e migração para Redux Toolkit. A lista é uma proposta e pode mudar com a decisão do responsável.
+
+## Medições de 02/11/2026
+
+LCP de 1,55 s, desempenho 99, acessibilidade 100 (1 execução válida de 3). Lighthouse 12.8.2 local, perfil móvel simulado, sem aparelho real.
