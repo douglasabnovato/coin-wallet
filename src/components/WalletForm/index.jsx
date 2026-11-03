@@ -86,6 +86,7 @@ function WalletForm() {
       <button type="submit" disabled={ busy }>{editor ? 'Editar despesa' : 'Adicionar despesa'}</button>
       {editor && <button type="button" className="secondary" onClick={ () => dispatch(cancelEdit()) }>Cancelar edição</button>}
       {(formError || error) && <p className="form-error" role="alert">{formError || error}</p>}
+      {!currencies.length && !error && <p className="form-status" role="status">Carregando moedas…</p>}
     </form>
   );
 }

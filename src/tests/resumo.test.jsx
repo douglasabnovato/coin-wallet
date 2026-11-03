@@ -1,6 +1,6 @@
 /* Testes do ciclo de 03/11/2026: resumo por categoria e exportação em CSV */
 import React from 'react';
-import { screen, fireEvent, within } from '@testing-library/react';
+import { screen, fireEvent, within, waitFor } from '@testing-library/react';
 import Wallet from '../pages/Wallet';
 import { totalsByTag } from '../utils/summary';
 import { cell, expensesToCSV, neutralize } from '../utils/csv';
@@ -50,6 +50,18 @@ describe('resumo por categoria', () => {
     const items = screen.getAllByTestId('summary-item');
     expect(items).toHaveLength(1);
     expect(items[0].textContent).toContain('R$ 20.00 (100%)');
+  });
+});
+
+describe('carregamento das moedas', () => {
+  test('mostra "Carregando moedas…" até a API responder e some depois', async () => {
+    let answer;
+    vi.spyOn(global, 'fetch').mockImplementation(() => new Promise((ok) => { answer = ok; }));
+    renderWithRouterAndStore(<Wallet />, '/carteira', state([]));
+    expect(screen.getByRole('status').textContent).toBe('Carregando moedas…');
+    answer({ ok: true, json: async () => rates });
+    await waitFor(() => expect(screen.queryByRole('status')).toBeNull());
+    expect(screen.getAllByRole('option', { name: 'EUR' })).toHaveLength(1);
   });
 });
 

@@ -2,7 +2,7 @@
 .summary { margin: 20px auto; max-width: 1200px; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); padding: 16px; }
 .summary-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .summary-head h2 { font-size: 18px; color: #1a202c; }
-.summary-export { padding: 8px 14px; border: none; border-radius: 4px; background: #1d4ed8; color: #ffffff; font-weight: 600; cursor: pointer; }
+.summary-export { width: auto; padding: 8px 14px; border: none; border-radius: 4px; background: #1d4ed8; color: #ffffff; font-weight: 600; cursor: pointer; }
 .summary-list { list-style: none; display: grid; gap: 8px; }
 .summary-list li { display: grid; grid-template-columns: minmax(90px, 140px) 1fr auto; gap: 12px; align-items: center; font-size: 14px; }
 .summary-tag { font-weight: 600; color: #2d3748; }
