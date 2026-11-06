@@ -12,13 +12,15 @@ Uma solução intuitiva para gestão de despesas pessoais com suporte a múltipl
 - Id da despesa não se repete depois de excluir (antes a edição podia alterar a linha errada)
 - Mensagem na tela quando a API de cotações falha; valor zero ou vazio não é aceito
 - Acessibilidade WCAG AA (axe-core sem violações) e layout responsivo
+- Gastos por categoria (valor e percentual por tag) e exportação em CSV para Excel em português
+- Aviso "Carregando moedas…" enquanto a API de cotações responde
 
 ### Como executar
 
 ```bash
 npm install
 npm run dev     # http://localhost:5173
-npm test        # 36 testes
+npm test        # 45 testes
 npm run build   # gera build/, que a Netlify publica
 ```
 
@@ -28,6 +30,11 @@ npm run build   # gera build/, que a Netlify publica
 - Hospedagem: Netlify, publicada a cada push na `main`
 - Critérios do MVP: [docs/MVP.md](docs/MVP.md)
 - Histórico do plano anterior, para o GitHub Pages: [docs/DEPLOY.md](docs/DEPLOY.md)
+
+### Próximos passos
+
+- Responsável: proteger a `main` e publicar só depois do CI ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22)), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)) e confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)).
+- Código: desfazer exclusão ([#27](https://github.com/douglasabnovato/coin-wallet/issues/27)), filtro por categoria e mês ([#28](https://github.com/douglasabnovato/coin-wallet/issues/28)), teste de teclado em navegador ([#29](https://github.com/douglasabnovato/coin-wallet/issues/29)), lint e dependências ([#30](https://github.com/douglasabnovato/coin-wallet/issues/30)).
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
 

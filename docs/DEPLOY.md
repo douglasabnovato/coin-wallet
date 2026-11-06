@@ -1,5 +1,7 @@
 # Deploy · Coin Wallet
 
+> **Histórico.** Este plano era para o GitHub Pages, que não foi ligado. O endereço oficial é a Netlify: https://coin-wallet-app.netlify.app/ (conferido em 03/11/2026; ver `MVP.md` e #26).
+
 Plano de ação para publicar a carteira de despesas em hospedagem gratuita.
 
 ## 1. Desafio
