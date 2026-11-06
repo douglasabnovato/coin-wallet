@@ -4,6 +4,33 @@
 
 Uma solução intuitiva para gestão de despesas pessoais com suporte a múltiplas moedas. A aplicação permite adicionar, editar e excluir registros de gastos, realizando conversões automáticas baseadas em taxas de câmbio em tempo real. Projetada para ser rápida, escalável e fácil de manter.
 
+## Estado e próximos passos (ciclo de 03/11/2026)
+
+Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.app/) (HTTP 200 em 06/11/2026).
+
+**O que foi feito**
+- Gastos por categoria e exportação em CSV, com testes ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
+- Aviso de carregamento das moedas, com teste ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
+- CI também nos PRs para a `developer` ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
+- Netlify conferida e documentada como endereço oficial ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
+- Data da cotação usada aparece na tela ([#17](https://github.com/douglasabnovato/coin-wallet/pull/17)).
+- A carteira abre ao recarregar a página na Netlify ([#15](https://github.com/douglasabnovato/coin-wallet/pull/15)).
+
+**O que queremos fazer**
+- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) Proteger a `main` e publicar na Netlify só depois do CI (responsável).
+- [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Confirmar a meta do MVP (responsável).
+- [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Ligar a medição de uso sem dado pessoal (responsável).
+- [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Fluxo principal feito por uma pessoa de fora no site publicado (responsável).
+- [#26](https://github.com/douglasabnovato/coin-wallet/issues/26) Confirmar a Netlify como endereço oficial e aposentar o caminho do Pages (responsável).
+- [#27](https://github.com/douglasabnovato/coin-wallet/issues/27) Desfazer a exclusão de uma despesa.
+- [#28](https://github.com/douglasabnovato/coin-wallet/issues/28) Filtrar despesas por categoria e mês.
+- [#29](https://github.com/douglasabnovato/coin-wallet/issues/29) Teste de teclado e acessibilidade em navegador no CI.
+- [#30](https://github.com/douglasabnovato/coin-wallet/issues/30) Manutenção: lint no CI e dependências.
+
+**Onde está a documentação**
+- Estado e critérios: [docs/MVP.md](docs/MVP.md).
+- Plano do ciclo: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md), seção "Ciclo de 03/11/2026".
+
 ## Versão 2.0 (revisão de qualidade)
 
 - Build com **Vite 8** e testes com **Vitest** (o CRA 3 com `--openssl-legacy-provider` não roda no Node 20)
