@@ -1,9 +1,10 @@
-/* Página da carteira: carrega as moedas e monta cabeçalho, formulário e tabela */
+/* Página da carteira: carrega as moedas e monta cabeçalho, formulário, resumo por categoria e tabela */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import WalletForm from '../../components/WalletForm';
 import Table from '../../components/Table';
+import Summary from '../../components/Summary';
 import { fetchCurrencies } from '../../actions';
 import './index.css';
 
@@ -20,6 +21,7 @@ function Wallet() {
       <main className="wallet-main">
         <h2 className="sr-only">Nova despesa</h2>
         <WalletForm />
+        <Summary />
         <Table />
       </main>
     </div>
