@@ -1,6 +1,10 @@
 # MVP — Coin Wallet
 
-> Criado em 31/10/2026, com os critérios usados no `movies`. Situação baseada em `AVALIACAO.md` e na conferência deste ciclo.
+> Criado em 31/10/2026, com os critérios usados no `movies`. Situação baseada em `AVALIACAO.md` e na conferência deste ciclo. Critério 10 revisto em 10/11/2026.
+
+**Resumo:** 8 de 12 aplicáveis atendidos
+
+**Finalizado:** sim
 
 ## Problema e hipótese
 
@@ -23,7 +27,7 @@
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Atende: `/carteira` com 3 execuções válidas (1,50 s, 2,08 s e 2,42 s; mediana 2,08 s); login 1,30 s e 1,37 s | Lighthouse 12.8.2 móvel simulado, 03/11, site publicado |
 | 8 | Acessibilidade básica | Lighthouse e teclado | Atende: Lighthouse 100 no login e na carteira; carteira percorrida por Tab com foco visível em todos os 10 elementos | Medição de 03/11, abaixo |
 | 9 | Segurança e conformidade | Riscos decididos; termos de terceiros cumpridos | Atende: sem senha real nem servidor; AwesomeAPI com CORS liberado; CSV neutraliza fórmulas (OWASP) | `src/utils/csv.js` |
-| 10 | Entrega confiável | Publicação só depois de CI verde | Parcial: CI em PR e push para `main` e `developer/**`; a Netlify publica a `main` sem esperar o CI e a `main` não é protegida | #22 (responsável) |
+| 10 | Entrega confiável | Publicação só depois de CI verde | Parcial: a `main` está protegida (exige PR, bloqueia force push e exclusão) e o workflow `CI` roda em PR e push para `main` e `developer/**`; falta a Netlify publicar só depois do CI verde | `gh api repos/douglasabnovato/coin-wallet/rulesets` em 10/11/2026: ruleset `principal-protegida` ativo; #22 (responsável, parte da Netlify) |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 45 testes no CI (28 da Trybe e 17 próprios) | Workflow CI |
 | 12 | Documentação honesta | Qualquer pessoa roda o projeto, e os números estão certos | Atende: README, este documento e `PLANO-DE-ACAO.md` conferidos em 05/11 | Este PR |
 

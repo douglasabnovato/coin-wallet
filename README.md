@@ -17,7 +17,7 @@ Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.ap
 - A carteira abre ao recarregar a página na Netlify ([#15](https://github.com/douglasabnovato/coin-wallet/pull/15)).
 
 **O que queremos fazer**
-- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) Proteger a `main` e publicar na Netlify só depois do CI (responsável).
+- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) Publicar na Netlify só depois do CI (responsável). A proteção da `main` saiu em 10/11/2026.
 - [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Confirmar a meta do MVP (responsável).
 - [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Ligar a medição de uso sem dado pessoal (responsável).
 - [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Fluxo principal feito por uma pessoa de fora no site publicado (responsável).
@@ -60,7 +60,7 @@ npm run build   # gera build/, que a Netlify publica
 
 ### Próximos passos
 
-- Responsável: proteger a `main` e publicar só depois do CI ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22)), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)) e confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)).
+- Responsável: publicar na Netlify só depois do CI ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22); a `main` já está protegida desde 10/11/2026), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)) e confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)).
 - Código: desfazer exclusão ([#27](https://github.com/douglasabnovato/coin-wallet/issues/27)), filtro por categoria e mês ([#28](https://github.com/douglasabnovato/coin-wallet/issues/28)), teste de teclado em navegador ([#29](https://github.com/douglasabnovato/coin-wallet/issues/29)), lint e dependências ([#30](https://github.com/douglasabnovato/coin-wallet/issues/30)).
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
