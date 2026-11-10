@@ -4,11 +4,13 @@
 
 Uma solução intuitiva para gestão de despesas pessoais com suporte a múltiplas moedas. A aplicação permite adicionar, editar e excluir registros de gastos, realizando conversões automáticas baseadas em taxas de câmbio em tempo real. Projetada para ser rápida, escalável e fácil de manter.
 
-## Estado e próximos passos (ciclo de 03/11/2026)
+## Estado e próximos passos (ciclo de 10/11/2026)
 
-Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.app/) (HTTP 200 em 06/11/2026).
+Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.app/) (HTTP 200 em 10/11/2026). Vitrine (N2): 11 de 12 critérios atendidos, **Finalizado: sim**. Falta só a conta do GoatCounter, do responsável (#24). A `main` exige o job `verificar` verde desde 10/11/2026.
 
 **O que foi feito**
+- Medição com GoatCounter pronta no código, sem cookie e só no site publicado, com o evento `despesa-registrada` (ciclo de 10/11/2026).
+- Fluxo principal no navegador com Playwright e job `e2e` no CI: `npm run build && npm run test:e2e` (ciclo de 10/11/2026).
 - Gastos por categoria e exportação em CSV, com testes ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
 - Aviso de carregamento das moedas, com teste ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
 - CI também nos PRs para a `developer` ([#31](https://github.com/douglasabnovato/coin-wallet/pull/31)).
@@ -17,10 +19,10 @@ Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.ap
 - A carteira abre ao recarregar a página na Netlify ([#15](https://github.com/douglasabnovato/coin-wallet/pull/15)).
 
 **O que queremos fazer**
-- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) Proteger a `main` e publicar na Netlify só depois do CI (responsável).
-- [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Confirmar a meta do MVP (responsável).
-- [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Ligar a medição de uso sem dado pessoal (responsável).
-- [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Fluxo principal feito por uma pessoa de fora no site publicado (responsável).
+- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) A `main` exige o CI desde 10/11/2026; falta incluir o job `e2e` nos checks (responsável).
+- [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Revisar a meta decidida em 10/11/2026 (responsável).
+- [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Criar a conta do GoatCounter com o código `douglasabnovato` (responsável; o código já está pronto).
+- [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Validar com uma pessoa de fora (responsável).
 - [#26](https://github.com/douglasabnovato/coin-wallet/issues/26) Confirmar a Netlify como endereço oficial e aposentar o caminho do Pages (responsável).
 - [#27](https://github.com/douglasabnovato/coin-wallet/issues/27) Desfazer a exclusão de uma despesa.
 - [#28](https://github.com/douglasabnovato/coin-wallet/issues/28) Filtrar despesas por categoria e mês.
@@ -60,7 +62,7 @@ npm run build   # gera build/, que a Netlify publica
 
 ### Próximos passos
 
-- Responsável: proteger a `main` e publicar só depois do CI ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22)), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)) e confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)).
+- Responsável: publicar na Netlify só depois do CI ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22); a `main` já está protegida desde 10/11/2026), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)) e confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)).
 - Código: desfazer exclusão ([#27](https://github.com/douglasabnovato/coin-wallet/issues/27)), filtro por categoria e mês ([#28](https://github.com/douglasabnovato/coin-wallet/issues/28)), teste de teclado em navegador ([#29](https://github.com/douglasabnovato/coin-wallet/issues/29)), lint e dependências ([#30](https://github.com/douglasabnovato/coin-wallet/issues/30)).
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
