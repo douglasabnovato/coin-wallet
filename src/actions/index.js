@@ -4,6 +4,7 @@ export const GET_CURRENCIES_SUCCESS = 'GET_CURRENCIES_SUCCESS';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const RESTORE_EXPENSE = 'RESTORE_EXPENSE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 export const CANCEL_EDIT = 'CANCEL_EDIT';
 export const SAVE_EDITED_EXPENSE = 'SAVE_EDITED_EXPENSE';
@@ -54,6 +55,9 @@ export const fetchNewExpense = (expenseData) => async (dispatch) => {
 
 /* Remove a despesa pelo id */
 export const deleteExpense = (id) => ({ type: DELETE_EXPENSE, id });
+
+/* Devolve uma despesa excluída, com o mesmo id e as mesmas cotações */
+export const restoreExpense = (expense) => ({ type: RESTORE_EXPENSE, expense });
 
 /* Entra no modo de edição da despesa */
 export const editExpense = (id) => ({ type: EDIT_EXPENSE, id });

@@ -14,6 +14,54 @@ Timebox: 40 min.
 | Could | Gráfico de gastos por tag | Médio | Médio | Próximo ciclo |
 | Could | README próprio (hoje é o enunciado da Trybe) | Baixo | Baixo | Próximo ciclo |
 
+## Ciclo de 16/11/2026
+
+> Branch `feature/2026-11-16` → `developer/sprint-2026-11-19` → `main`. Nível: Vitrine (N2), 12 critérios. Estado: [`MVP.md`](MVP.md).
+
+### Produto
+
+- **Problema e público:** quem gasta em outras moedas registra despesas e vê o total em reais, com a cotação do momento.
+- **Hipótese:** pelo menos 50% de quem entra registra uma despesa (evento `despesa-registrada`). A conta do GoatCounter ainda não existe (#24).
+- **O que a revisão mostrou:** o `MVP.md` declarava 11 de 12, mas três critérios não tinham a evidência que a régua pede hoje:
+  - 8 (acessibilidade): só Lighthouse e um percurso por Tab feito à mão; não há axe nem teclado num teste de navegador no CI.
+  - 9 (segurança): a API de alertas do Dependabot responde 403. Pela regra em decisão (engenharia#33), fica Parcial, não "Atende" só pelo audit.
+  - 7 (desempenho): a série é de 10/11. O bundle publicado hoje (`index-DT4agUWF.js`) é o mesmo do build da `main`, então vale medir de novo no ar.
+- **Pesquisa (fontes oficiais):**
+  - Playwright, "Accessibility testing" (https://playwright.dev/docs/accessibility-testing): usar `@axe-core/playwright` com as tags WCAG A e AA dentro do teste de navegador, e lembrar que o axe não pega tudo; o teclado pede teste à parte.
+  - W3C, WCAG 2.2, "Understanding 4.1.3 Status Messages" (https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html): aviso que aparece sem tirar o foco, como "Despesa excluída", precisa de `role="status"` para o leitor de tela anunciar.
+  - W3C, WCAG 2.2, "Understanding 2.2.1 Timing Adjustable" (https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html): um aviso que some sozinho é um limite de tempo; pausar o tempo enquanto a pessoa está com o foco ou o mouse nele.
+  - W3C, WCAG 2.2, "Understanding 1.4.3 Contrast (Minimum)" (https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html): texto pequeno precisa de 4,5:1.
+  - web.dev, "Largest Contentful Paint" (https://web.dev/articles/lcp): LCP bom é até 2,5 s no percentil 75.
+- **Backlog priorizado (impacto × esforço):**
+
+| Item | Impacto | Esforço | Neste ciclo |
+|---|---|---|---|
+| Axe e teclado no Playwright, no CI (#29) | Alto | Baixo | Sim |
+| MVP honesto: critérios 8 e 9 conforme a evidência | Alto | Baixo | Sim |
+| Patch e minor das dependências (#30, parte) | Médio | Baixo | Sim |
+| Desfazer a exclusão com aviso anunciado (#27) | Médio | Baixo | Sim |
+| LCP de novo no site publicado | Médio | Baixo | Sim |
+| Filtro por categoria e mês (#28) | Médio | Médio | Não |
+| ESLint 9 no CI (#30, parte) | Médio | Médio | Não |
+
+- **Fora do escopo:** contas reais, sincronização, Redux Toolkit, React 19 e outras trocas de versão maior.
+
+### Engenharia
+
+- **Arquitetura:** SPA em Vite + React 18 + Redux, publicada na Netlify. Sem servidor: a cotação vem da AwesomeAPI, e os dados ficam no `localStorage`. O "desfazer" guarda a última despesa excluída no estado do componente e a devolve por uma action nova (`RESTORE_EXPENSE`), na posição pelo id.
+- **Riscos:** o aviso de desfazer não pode quebrar os 28 requisitos da Trybe (exclusão imediata, sem diálogo); o axe pode achar contraste baixo em botões que o Lighthouse não pegou.
+- **Qualidade:** axe sem violações nas telas de login e carteira com despesas, em largura de desktop e de celular (375 px); o app não tem tema escuro próprio (não há `prefers-color-scheme` no CSS), por isso não há teste no escuro. Teste só de teclado: entra, registra e exclui uma despesa com `Tab` e `keyboard.type`, conferindo o contorno de 3 px definido em `src/index.css`.
+- **Pronto:** `npm test`, `npm run build` e `npm run test:e2e` verdes no CI; `MVP.md` com cada "Atende" citando comando, data e resultado.
+
+### Plano de ação
+
+1. Atualizar patch e minor (`react-redux`, `react-router-dom`, `vite`, `vitest`, `@vitejs/plugin-react`), com `npm audit --omit=dev`.
+2. `@axe-core/playwright` e teste de teclado no `e2e/`; corrigir o que o axe achar.
+3. Desfazer a exclusão (#27), com testes no Vitest e no Playwright.
+4. Lighthouse móvel no site publicado depois de conferir o hash do bundle.
+5. `MVP.md`, README e `DEPLOY.md` com o estado real.
+6. Vira issue: ligar os alertas do Dependabot (responsável), ESLint 9 no CI (#30), filtro (#28).
+
 ## Ciclo de 03/11/2026
 
 > Branch `feature/2026-11-03` → `developer/sprint-2026-11-05` → `main`. Nível: Vitrine (N2), 12 critérios. Estado: [`MVP.md`](MVP.md).
