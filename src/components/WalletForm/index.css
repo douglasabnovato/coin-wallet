@@ -42,7 +42,7 @@
 }
 
 .wallet-form button {
-  background-color: #00b37e;
+  background-color: #047857;
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -55,9 +55,9 @@
 }
 
 .wallet-form button:hover {
-  background-color: #00875f;
+  background-color: #065f46;
 }
 
 .wallet-form button:active {
-  background-color: #015f43;
+  background-color: #064e3b;
 }/* Fim de WalletForm/index.css */

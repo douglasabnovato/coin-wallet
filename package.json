@@ -21,6 +21,7 @@
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@playwright/test": "1.63.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.9.1",
