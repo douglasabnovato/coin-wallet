@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteExpense, editExpense, restoreExpense } from '../../actions';
 import { convertedBRL, rateDate, rateOf } from '../../utils/money';
+import { nextId } from '../../reducers/wallet';
 import './index.css';
 
 /* Tempo do aviso "Despesa excluída"; pausa com o foco ou o mouse nele (WCAG 2.2.1) */
@@ -42,10 +43,12 @@ function Table() {
     setRestoredId(null);
   }, [restoredId, expenses]);
 
+  /* Se uma despesa nova já usou o id (nextId = maior id + 1), a devolvida ganha um id novo */
   const handleUndo = () => {
     stopTimer();
-    dispatch(restoreExpense(removed));
-    setRestoredId(removed.id);
+    const id = expenses.some((e) => e.id === removed.id) ? nextId(expenses) : removed.id;
+    dispatch(restoreExpense({ ...removed, id }));
+    setRestoredId(id);
     setRemoved(null);
   };
 
@@ -60,7 +63,7 @@ function Table() {
       className="undo-notice"
       role="status"
       onMouseEnter={ stopTimer }
-      onMouseLeave={ () => removed && startTimer() }
+      onMouseLeave={ (event) => removed && !event.currentTarget.contains(document.activeElement) && startTimer() }
       onFocus={ stopTimer }
       onBlur={ handleBlur }
     >

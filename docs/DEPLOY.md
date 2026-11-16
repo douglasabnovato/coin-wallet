@@ -4,7 +4,7 @@
 
 - URL: https://coin-wallet-app.netlify.app/ (200 em `/` e `/carteira` em 16/11/2026).
 - O que está no repositório:
-  - `netlify.toml`: `npm run build`, pasta `build`, Node 22. Os mesmos valores que o site usa hoje (o bundle publicado é o do `npm run build` da `main`).
+  - `netlify.toml`: `npm run build`, pasta `build`, Node 22. O bundle publicado é o do `npm run build` da `main`, o que indica esse mesmo build; os campos da tela da Netlify ficam a conferir pelo responsável (passo 3 abaixo).
   - `public/_redirects`: `/* /index.html 200`, para abrir `/carteira` direto e no F5.
 - O que é do responsável, na conta da Netlify (sem segredo):
   1. Abrir https://app.netlify.com, entrar no site `coin-wallet-app`.

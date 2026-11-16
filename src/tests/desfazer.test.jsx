@@ -62,6 +62,31 @@ describe('desfazer a exclusão', () => {
     expect(screen.queryByRole('cell', { name: 'Hotel' })).toBeNull();
   });
 
+  test('se uma despesa nova reaproveitou o id, "Desfazer" devolve com id novo e não perde nada', async () => {
+    vi.spyOn(global, 'fetch').mockResolvedValue({ ok: true, json: async () => rates });
+    const { store } = renderWithRouterAndStore(<Wallet />, '/carteira', state(expenses));
+    fireEvent.click(screen.getByRole('button', { name: 'Excluir despesa Cinema' }));
+    fireEvent.change(screen.getByLabelText('Valor:'), { target: { value: '2' } });
+    fireEvent.change(screen.getByLabelText('Descrição:'), { target: { value: 'Táxi' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Adicionar despesa' }));
+    await screen.findByRole('cell', { name: 'Táxi' });
+    expect(store.getState().wallet.expenses.map((e) => [e.id, e.description])).toEqual([[0, 'Café'], [1, 'Hotel'], [2, 'Táxi']]);
+    fireEvent.click(screen.getByRole('button', { name: 'Desfazer' }));
+    expect(store.getState().wallet.expenses.map((e) => [e.id, e.description])).toEqual([[0, 'Café'], [1, 'Hotel'], [2, 'Táxi'], [3, 'Cinema']]);
+    expect(screen.getByRole('button', { name: 'Excluir despesa Cinema' })).toHaveFocus();
+    vi.restoreAllMocks();
+  });
+
+  test('o mouse saindo do aviso não religa o tempo com o foco em "Desfazer"', () => {
+    vi.useFakeTimers();
+    renderWithRouterAndStore(<Wallet />, '/carteira', state(expenses));
+    fireEvent.click(screen.getByRole('button', { name: 'Excluir despesa Hotel' }));
+    fireEvent.mouseEnter(aviso());
+    fireEvent.mouseLeave(aviso());
+    act(() => { vi.advanceTimersByTime(UNDO_MS * 2); });
+    expect(screen.getByRole('button', { name: 'Desfazer' })).toHaveFocus();
+  });
+
   test('a action não duplica uma despesa que já voltou', () => {
     const atual = { ...state(expenses).wallet };
     expect(wallet(atual, restoreExpense(expenses[1]))).toBe(atual);

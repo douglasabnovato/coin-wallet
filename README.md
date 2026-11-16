@@ -56,7 +56,7 @@ Em 16/11/2026 a contagem foi revista contra a régua: o 11 de 12 anterior era 9 
 ```bash
 npm install
 npm run dev       # http://localhost:5173
-npm test          # 54 testes (Vitest)
+npm test          # 56 testes (Vitest)
 npm run build     # gera build/, que a Netlify publica
 npx playwright install chromium
 npm run test:e2e  # 8 testes no navegador sobre o build (rode o build antes), com axe
