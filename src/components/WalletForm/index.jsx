@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNewExpense, saveEditedExpense, cancelEdit } from '../../actions';
+import { EVENTO_DESPESA, registrarEvento } from '../../utils/medicao';
 import './index.css';
 
 const METHODS = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
@@ -48,6 +49,7 @@ function WalletForm() {
       const ok = await dispatch(fetchNewExpense(data));
       setBusy(false);
       if (!ok) return;
+      registrarEvento(EVENTO_DESPESA);
     }
     setValue('');
     setDescription('');
