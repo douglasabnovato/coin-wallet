@@ -1,5 +1,21 @@
 # Deploy · Coin Wallet
 
+## Netlify (endereço oficial, revisto em 16/11/2026)
+
+- URL: https://coin-wallet-app.netlify.app/ (200 em `/` e `/carteira` em 16/11/2026).
+- O que está no repositório:
+  - `netlify.toml`: `npm run build`, pasta `build`, Node 22. Os mesmos valores que o site usa hoje (o bundle publicado é o do `npm run build` da `main`).
+  - `public/_redirects`: `/* /index.html 200`, para abrir `/carteira` direto e no F5.
+- O que é do responsável, na conta da Netlify (sem segredo):
+  1. Abrir https://app.netlify.com, entrar no site `coin-wallet-app`.
+  2. **Site configuration → Build & deploy → Continuous deployment**: conferir que o repositório é `douglasabnovato/coin-wallet` e a branch de produção é `main`.
+  3. **Build settings**: com o `netlify.toml`, os campos "Build command" e "Publish directory" da tela são substituídos pelo arquivo; conferir que o primeiro deploy depois do merge ficou "Published".
+  4. Se o deploy falhar, abrir **Deploys → (o deploy) → Deploy log** e copiar o erro na #26.
+- Publicar só depois do CI: a `main` só recebe PR com os jobs `verificar` e `e2e` verdes (ruleset `principal-protegida`, conferido em 16/11/2026).
+- Depois de cada merge na `main`, conferir que o site mudou: `curl -s https://coin-wallet-app.netlify.app/ | grep -oE 'assets/index-[^"]+\.js'` deve mostrar o mesmo nome do `build/assets/` gerado na `main`.
+
+O resto deste documento é o plano antigo, para o GitHub Pages.
+
 > **Histórico.** Este plano era para o GitHub Pages, que não foi ligado. O endereço oficial é a Netlify: https://coin-wallet-app.netlify.app/ (conferido em 03/11/2026; ver `MVP.md` e #26).
 
 Plano de ação para publicar a carteira de despesas em hospedagem gratuita.
