@@ -6,7 +6,7 @@ Uma solução intuitiva para gestão de despesas pessoais com suporte a múltipl
 
 ## Estado e próximos passos (ciclo de 16/11/2026)
 
-Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.app/) (HTTP 200 em 16/11/2026). Vitrine (N2): 10 de 12 critérios atendidos, **Finalizado: sim**. Os dois abertos dependem do responsável: a conta do GoatCounter (#24) e ligar os alertas do Dependabot (#38). A `main` exige os jobs `verificar` e `e2e` verdes.
+Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.app/) (HTTP 200 em 16/11/2026). Vitrine (N2): 11 de 12 critérios atendidos, **Finalizado: sim**. O único aberto depende do responsável: a conta do GoatCounter (#24). Os alertas do Dependabot foram ligados em 16/11/2026 e mostram 0 abertos (15h02), com `npm audit --omit=dev` sem vulnerabilidades. A `main` exige os jobs `verificar` e `e2e` verdes.
 
 Em 16/11/2026 a contagem foi revista contra a régua: o 11 de 12 anterior era 9 de 12 (acessibilidade sem teste de navegador e segurança com o Dependabot desligado). Detalhes em [docs/MVP.md](docs/MVP.md).
 
@@ -24,7 +24,7 @@ Em 16/11/2026 a contagem foi revista contra a régua: o 11 de 12 anterior era 9 
 
 **O que queremos fazer**
 - [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) A `main` exige os jobs `verificar` e `e2e` (conferido em 16/11/2026); falta o responsável fechar.
-- [#38](https://github.com/douglasabnovato/coin-wallet/issues/38) Ligar os alertas do Dependabot (responsável).
+- [#38](https://github.com/douglasabnovato/coin-wallet/issues/38) Alertas do Dependabot ligados em 16/11/2026, com 0 abertos; a issue fica com o responsável para fechar.
 - [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Revisar a meta decidida em 10/11/2026 (responsável).
 - [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Criar a conta do GoatCounter com o código `douglasabnovato` (responsável; o código já está pronto).
 - [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Validar com uma pessoa de fora (responsável).
@@ -73,7 +73,7 @@ Requer Node 22.12 ou mais novo (o `@axe-core/playwright` 4.14 exige). O CI usa N
 
 ### Próximos passos
 
-- Responsável: fechar a proteção da `main` ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22), já com `verificar` e `e2e`), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)), confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)) e ligar os alertas do Dependabot ([#38](https://github.com/douglasabnovato/coin-wallet/issues/38)).
+- Responsável: fechar a proteção da `main` ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22), já com `verificar` e `e2e`), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)), confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)) e fechar a issue dos alertas do Dependabot, já ligados ([#38](https://github.com/douglasabnovato/coin-wallet/issues/38)).
 - Código: filtro por categoria e mês ([#28](https://github.com/douglasabnovato/coin-wallet/issues/28)), ESLint e versões maiores ([#30](https://github.com/douglasabnovato/coin-wallet/issues/30)), edição com axe e teclado ([#39](https://github.com/douglasabnovato/coin-wallet/issues/39)) e LCP depois do merge ([#40](https://github.com/douglasabnovato/coin-wallet/issues/40)).
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
