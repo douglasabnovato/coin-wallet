@@ -1,0 +1,7 @@
+# Netlify: build da SPA (Vite) na raiz do site. O desvio de rotas para o index.html está em public/_redirects.
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "22"

@@ -1,6 +1,6 @@
 /* Reducer da carteira: moedas, despesas, modo de edição e último erro */
 import {
-  GET_CURRENCIES_SUCCESS, REQUEST_FAILED, ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT, SAVE_EDITED_EXPENSE,
+  GET_CURRENCIES_SUCCESS, REQUEST_FAILED, ADD_EXPENSE, DELETE_EXPENSE, RESTORE_EXPENSE, EDIT_EXPENSE, CANCEL_EDIT, SAVE_EDITED_EXPENSE,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -27,6 +27,10 @@ const wallet = (state = INITIAL_STATE, action) => {
       expenses: state.expenses.filter((e) => e.id !== action.id),
       editor: state.editor && state.idToEdit !== action.id,
     };
+  case RESTORE_EXPENSE:
+    /* Ignora se o id já voltou (clique duplo); senão devolve na posição pelo id */
+    if (state.expenses.some((e) => e.id === action.expense.id)) return state;
+    return { ...state, expenses: [...state.expenses, action.expense].sort((a, b) => a.id - b.id) };
   case EDIT_EXPENSE:
     return { ...state, editor: true, idToEdit: action.id };
   case CANCEL_EDIT:

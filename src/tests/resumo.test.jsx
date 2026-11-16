@@ -58,9 +58,10 @@ describe('carregamento das moedas', () => {
     let answer;
     vi.spyOn(global, 'fetch').mockImplementation(() => new Promise((ok) => { answer = ok; }));
     renderWithRouterAndStore(<Wallet />, '/carteira', state([]));
-    expect(screen.getByRole('status').textContent).toBe('Carregando moedas…');
+    // A tabela também tem uma região de status (aviso de desfazer), vazia aqui.
+    expect(screen.getByText('Carregando moedas…')).toHaveAttribute('role', 'status');
     answer({ ok: true, json: async () => rates });
-    await waitFor(() => expect(screen.queryByRole('status')).toBeNull());
+    await waitFor(() => expect(screen.queryByText('Carregando moedas…')).toBeNull());
     expect(screen.getAllByRole('option', { name: 'EUR' })).toHaveLength(1);
   });
 });

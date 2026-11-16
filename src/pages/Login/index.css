@@ -14,8 +14,9 @@ body {
 .container {
   width: 100%;
   max-width: 420px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  margin: 0 auto;
+  /* Branco sólido: com 95% de opacidade sobre o gradiente, o contraste do texto não era medível */
+  background: #ffffff;
   border-radius: 16px;
   padding: 45px 35px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 1px rgba(255, 255, 255, 0.5) inset;
@@ -35,25 +36,15 @@ body {
 }
 
 /* Título ou Logo opcional dentro do form se quiser dar charme */
-.container form::before {
-  content: "Coin Wallet";
-  display: block;
-  font-size: 26px;
-  font-weight: 800;
-  color: #0f172a;
-  text-align: center;
-  margin-bottom: 28px;
-  letter-spacing: -0.5px;
-}
-
+/* O título vem do h1 da página: o "Coin Wallet" do ::before repetia o nome na tela e no leitor de tela.
+   O slogan ficava por cima da nota de privacidade (margem negativa). */
 .container form::after {
   content: "Gerencie suas finanças com inteligência";
   display: block;
   font-size: 13px;
   color: #64748b;
   text-align: center;
-  margin-top: -20px;
-  margin-bottom: 25px;
+  margin-top: 12px;
 }
 
 /* Inputs elegantes com transição suave */
@@ -84,9 +75,10 @@ body {
   box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.55);
 }
 
-/* Botão encantador com efeito de elevação */
+/* Botão com efeito de elevação. Cor sólida: o gradiente #04AA6D dava 3:1 com o texto branco
+   (WCAG 1.4.3 pede 4,5:1), e o axe não mede contraste sobre gradiente */
 button {
-  background: linear-gradient(135deg, #04AA6D 0%, #038858 100%);
+  background: #047857;
   color: white;
   padding: 15px 20px;
   margin-top: 22px;
