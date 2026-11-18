@@ -50,6 +50,9 @@ function WalletForm() {
     dispatch(cancelEdit());
     setValue('');
     setDescription('');
+    setCurrency('USD');
+    setMethod(METHODS[0]);
+    setTag(TAGS[0]);
     setFormError('');
   };
 

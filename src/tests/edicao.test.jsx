@@ -26,12 +26,17 @@ describe('foco na edição de uma despesa', () => {
 
   test('"Cancelar edição" limpa o formulário, não muda a despesa e devolve o foco ao "Editar" da linha', () => {
     const { store } = renderWithRouterAndStore(<Wallet />, '/carteira', state);
+    fireEvent.click(screen.getByRole('button', { name: 'Editar despesa Hotel' }));
+    expect(screen.getByLabelText('Tag:')).toHaveValue('Trabalho');
+    fireEvent.click(screen.getByRole('button', { name: 'Cancelar edição' }));
     fireEvent.click(screen.getByRole('button', { name: 'Editar despesa Café' }));
     fireEvent.change(screen.getByLabelText('Valor:'), { target: { value: '99' } });
     fireEvent.click(screen.getByRole('button', { name: 'Cancelar edição' }));
     expect(store.getState().wallet.expenses).toStrictEqual(expenses);
     expect(screen.getByLabelText('Valor:')).toHaveValue(null);
     expect(screen.getByLabelText('Descrição:')).toHaveValue('');
+    expect(screen.getByLabelText('Método de pagamento:')).toHaveValue('Dinheiro');
+    expect(screen.getByLabelText('Tag:')).toHaveValue('Alimentação');
     expect(screen.getByRole('button', { name: 'Editar despesa Café' })).toHaveFocus();
   });
 });
