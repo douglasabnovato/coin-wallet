@@ -135,4 +135,38 @@ test('só pelo teclado: entra, registra, exclui e desfaz, com foco visível em c
   await expect(page.getByTestId('total-field')).toHaveText('50.00');
   await expect(page.getByRole('button', { name: 'Excluir despesa Táxi' })).toBeFocused();
 });
+
+/* Edição de despesa (#39): entra só pelo teclado, axe no modo de edição, salva e cancela com destino claro do foco */
+test('só pelo teclado: edita uma despesa, com axe no modo de edição e o foco de volta ao Editar da linha', async ({ page }) => {
+  await carteiraComDespesas(page);
+  await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; }' });
+  await expect(page.getByTestId('total-field')).toHaveText('684.95');
+
+  await tabAte(page, 'Editar despesa Hotel perto da estação central', 40);
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('button', { name: 'Editar despesa', exact: true })).toBeVisible();
+  await expect(page.getByLabel('Valor:')).toBeFocused();
+  await expect(page.getByLabel('Valor:')).toHaveValue('80');
+  await semViolacoes(page);
+
+  await page.keyboard.press('ControlOrMeta+A');
+  await page.keyboard.type('100');
+  await tabAte(page, 'Editar despesa');
+  await page.keyboard.press('Enter');
+  // 75 (EUR) + 100 x 7,00 (GBP, cotação original) + 49,95 (USD)
+  await expect(page.getByTestId('total-field')).toHaveText('824.95');
+  const linha = page.getByRole('row').filter({ hasText: 'Hotel perto da estação central' });
+  await expect(linha.getByRole('cell', { name: '7.00', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Editar despesa Hotel perto da estação central' })).toBeFocused();
+  expect(focoVisivel(await focado(page))).toBe(true);
+
+  await page.keyboard.press('Enter');
+  await expect(page.getByLabel('Valor:')).toBeFocused();
+  await tabAte(page, 'Cancelar edição');
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('button', { name: 'Adicionar despesa' })).toBeVisible();
+  await expect(page.getByLabel('Valor:')).toHaveValue('');
+  await expect(page.getByTestId('total-field')).toHaveText('824.95');
+  await expect(page.getByRole('button', { name: 'Editar despesa Hotel perto da estação central' })).toBeFocused();
+});
 /* Fim de acessibilidade.pw.js */

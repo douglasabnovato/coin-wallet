@@ -1,5 +1,5 @@
 /* Formulário de despesa: adiciona com a cotação do momento ou salva a edição; valida o valor */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNewExpense, saveEditedExpense, cancelEdit } from '../../actions';
 import { EVENTO_DESPESA, registrarEvento } from '../../utils/medicao';
@@ -32,6 +32,27 @@ function WalletForm() {
     }
   }, [editor, idToEdit, expenses]);
 
+  /* Foco na edição (#39): entra no Valor; ao salvar ou cancelar, volta ao "Editar" da linha */
+  const valueInput = useRef(null);
+  const editedId = useRef(null);
+  useEffect(() => {
+    if (editor) {
+      editedId.current = idToEdit;
+      valueInput.current?.focus();
+      return;
+    }
+    if (editedId.current === null) return;
+    document.getElementById(`editar-${editedId.current}`)?.focus();
+    editedId.current = null;
+  }, [editor, idToEdit]);
+
+  const handleCancel = () => {
+    dispatch(cancelEdit());
+    setValue('');
+    setDescription('');
+    setFormError('');
+  };
+
   /* Valida e envia */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +82,7 @@ function WalletForm() {
     <form onSubmit={ handleSubmit } className={ `wallet-form${editor ? ' editing' : ''}` } noValidate>
       <label htmlFor="value-input">
         Valor:
-        <input type="number" id="value-input" data-testid="value-input" min="0" step="0.01" inputMode="decimal" value={ value } onChange={ (e) => setValue(e.target.value) } />
+        <input ref={ valueInput } type="number" id="value-input" data-testid="value-input" min="0" step="0.01" inputMode="decimal" value={ value } onChange={ (e) => setValue(e.target.value) } />
       </label>
       <label htmlFor="description-input">
         Descrição:
@@ -86,7 +107,7 @@ function WalletForm() {
         </select>
       </label>
       <button type="submit" disabled={ busy }>{editor ? 'Editar despesa' : 'Adicionar despesa'}</button>
-      {editor && <button type="button" className="secondary" onClick={ () => dispatch(cancelEdit()) }>Cancelar edição</button>}
+      {editor && <button type="button" className="secondary" onClick={ handleCancel }>Cancelar edição</button>}
       {(formError || error) && <p className="form-error" role="alert">{formError || error}</p>}
       {!currencies.length && !error && <p className="form-status" role="status">Carregando moedas…</p>}
     </form>
