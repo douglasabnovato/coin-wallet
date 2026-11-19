@@ -123,7 +123,7 @@ function Table() {
                   <td>{convertedBRL(expense)}</td>
                   <td>Real</td>
                   <td>
-                    <button type="button" data-testid="edit-btn" onClick={ () => dispatch(editExpense(id)) } aria-label={ `Editar despesa ${description || value}` }>
+                    <button type="button" id={ `editar-${id}` } data-testid="edit-btn" onClick={ () => dispatch(editExpense(id)) } aria-label={ `Editar despesa ${description || value}` }>
                       Editar
                     </button>
                     <button type="button" id={ `excluir-${id}` } data-testid="delete-btn" className="danger" onClick={ () => handleDelete(expense) } aria-label={ `Excluir despesa ${description || value}` }>
