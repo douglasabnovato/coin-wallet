@@ -24,9 +24,12 @@ export const expensesToCSV = (expenses) => {
   return [HEADER, ...rows].map((r) => r.map(cell).join(';')).join('\r\n');
 };
 
+/* Marca de ordem de bytes (U+FEFF) escrita por código: o caractere invisível no fonte quebrava o lint (no-irregular-whitespace) */
+const BOM = String.fromCharCode(0xfeff);
+
 /* Baixa o arquivo no navegador; o BOM faz o Excel ler os acentos em UTF-8 */
 export const downloadCSV = (expenses, filename = 'coin-wallet-despesas.csv') => {
-  const blob = new Blob([`﻿${expensesToCSV(expenses)}`], { type: 'text/csv;charset=utf-8' });
+  const blob = new Blob([`${BOM}${expensesToCSV(expenses)}`], { type: 'text/csv;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

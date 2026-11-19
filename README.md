@@ -4,14 +4,15 @@
 
 Uma solução intuitiva para gestão de despesas pessoais com suporte a múltiplas moedas. A aplicação permite adicionar, editar e excluir registros de gastos, realizando conversões automáticas baseadas em taxas de câmbio em tempo real. Projetada para ser rápida, escalável e fácil de manter.
 
-## Estado e próximos passos (ciclo de 16/11/2026)
+## Estado e próximos passos (ciclo de 18/11/2026)
 
 Site publicado: [coin-wallet-app.netlify.app](https://coin-wallet-app.netlify.app/) (HTTP 200 em 16/11/2026). Vitrine (N2): 11 de 12 critérios atendidos, **Finalizado: sim**. O único aberto depende do responsável: a conta do GoatCounter (#24). Os alertas do Dependabot foram ligados em 16/11/2026 e mostram 0 abertos (15h02), com `npm audit --omit=dev` sem vulnerabilidades. A `main` exige os jobs `verificar` e `e2e` verdes.
 
 Em 16/11/2026 a contagem foi revista contra a régua: o 11 de 12 anterior era 9 de 12 (acessibilidade sem teste de navegador e segurança com o Dependabot desligado). Detalhes em [docs/MVP.md](docs/MVP.md).
 
 **O que foi feito**
-- Desfazer a exclusão de uma despesa, com aviso anunciado ao leitor de tela, e axe e teclado no Playwright, no CI (#27 e #29, ciclo de 16/11/2026; PR na sprint `developer/sprint-2026-11-19`).
+- Foco na edição de despesa (vai ao Valor e volta ao "Editar" da linha), com axe e teclado no Playwright; ESLint 9 no CI; LCP medido de novo no ar, mediana 2,10 s (#39, #30 e #40, ciclo de 18/11/2026; PR na sprint `developer/sprint-2026-11-19`).
+- Desfazer a exclusão de uma despesa, com aviso anunciado ao leitor de tela, e axe e teclado no Playwright, no CI (#27 e #29, ciclo de 16/11/2026; na `main` pelo PR #43).
 - Contraste dos botões (verde 3:1 virou 5,5:1), página sem rolagem horizontal no celular e login sem título repetido (ciclo de 16/11/2026).
 - Medição com GoatCounter pronta no código, sem cookie e só no site publicado, com o evento `despesa-registrada` ([#37](https://github.com/douglasabnovato/coin-wallet/pull/37)).
 - Fluxo principal no navegador com Playwright e job `e2e` no CI ([#37](https://github.com/douglasabnovato/coin-wallet/pull/37)).
@@ -23,17 +24,20 @@ Em 16/11/2026 a contagem foi revista contra a régua: o 11 de 12 anterior era 9 
 - A carteira abre ao recarregar a página na Netlify ([#15](https://github.com/douglasabnovato/coin-wallet/pull/15)).
 
 **O que queremos fazer**
-- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) A `main` exige os jobs `verificar` e `e2e` (conferido em 16/11/2026); falta o responsável fechar.
-- [#38](https://github.com/douglasabnovato/coin-wallet/issues/38) Alertas do Dependabot ligados em 16/11/2026, com 0 abertos; a issue fica com o responsável para fechar.
-- [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Revisar a meta decidida em 10/11/2026 (responsável).
-- [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Criar a conta do GoatCounter com o código `douglasabnovato` (responsável; o código já está pronto).
-- [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Validar com uma pessoa de fora (responsável).
-- [#26](https://github.com/douglasabnovato/coin-wallet/issues/26) Confirmar a Netlify como endereço oficial e aposentar o caminho do Pages (responsável).
-- [#28](https://github.com/douglasabnovato/coin-wallet/issues/28) Filtrar despesas por categoria e mês.
-- [#30](https://github.com/douglasabnovato/coin-wallet/issues/30) Manutenção: ESLint no CI e versões maiores das dependências.
-- [#39](https://github.com/douglasabnovato/coin-wallet/issues/39) Edição de despesa com axe e teclado no navegador.
-- [#40](https://github.com/douglasabnovato/coin-wallet/issues/40) Medir o LCP no ar depois do merge deste ciclo.
-- [#27](https://github.com/douglasabnovato/coin-wallet/issues/27) e [#29](https://github.com/douglasabnovato/coin-wallet/issues/29) fecham quando o ciclo de 16/11/2026 chegar à `main`.
+
+Próximos passos (rótulo `proximo-passo`, regra de 18/11/2026):
+- [#42](https://github.com/douglasabnovato/coin-wallet/issues/42) Desfazer mais de uma exclusão seguida.
+- [#46](https://github.com/douglasabnovato/coin-wallet/issues/46) Atualizar as dependências de versão maior.
+- [#47](https://github.com/douglasabnovato/coin-wallet/issues/47) Consertar o lint de CSS e rodar no CI.
+
+Com o responsável (`depende-do-responsavel`):
+- [#22](https://github.com/douglasabnovato/coin-wallet/issues/22) e [#38](https://github.com/douglasabnovato/coin-wallet/issues/38) Já resolvidas (conferido em 18/11/2026); falta o responsável fechar.
+- [#23](https://github.com/douglasabnovato/coin-wallet/issues/23) Revisar a meta decidida em 10/11/2026.
+- [#24](https://github.com/douglasabnovato/coin-wallet/issues/24) Criar a conta do GoatCounter com o código `douglasabnovato` (o código já está pronto).
+- [#25](https://github.com/douglasabnovato/coin-wallet/issues/25) Validar com uma pessoa de fora.
+- [#26](https://github.com/douglasabnovato/coin-wallet/issues/26) Confirmar a Netlify como endereço oficial e aposentar o caminho do Pages.
+
+Esperando o merge na `main`: [#30](https://github.com/douglasabnovato/coin-wallet/issues/30), [#39](https://github.com/douglasabnovato/coin-wallet/issues/39) e [#40](https://github.com/douglasabnovato/coin-wallet/issues/40).
 
 **Onde está a documentação**
 - Estado e critérios: [docs/MVP.md](docs/MVP.md).
@@ -56,10 +60,11 @@ Em 16/11/2026 a contagem foi revista contra a régua: o 11 de 12 anterior era 9 
 ```bash
 npm install
 npm run dev       # http://localhost:5173
-npm test          # 56 testes (Vitest)
+npm run lint      # ESLint 9, também no CI
+npm test          # 58 testes (Vitest)
 npm run build     # gera build/, que a Netlify publica
 npx playwright install chromium
-npm run test:e2e  # 8 testes no navegador sobre o build (rode o build antes), com axe
+npm run test:e2e  # 9 testes no navegador sobre o build (rode o build antes), com axe
 ```
 
 Requer Node 22.12 ou mais novo (o `@axe-core/playwright` 4.14 exige). O CI usa Node 22.
@@ -73,8 +78,7 @@ Requer Node 22.12 ou mais novo (o `@axe-core/playwright` 4.14 exige). O CI usa N
 
 ### Próximos passos
 
-- Responsável: fechar a proteção da `main` ([#22](https://github.com/douglasabnovato/coin-wallet/issues/22), já com `verificar` e `e2e`), confirmar a meta ([#23](https://github.com/douglasabnovato/coin-wallet/issues/23)), ligar a medição ([#24](https://github.com/douglasabnovato/coin-wallet/issues/24)), chamar uma pessoa de fora ([#25](https://github.com/douglasabnovato/coin-wallet/issues/25)), confirmar a Netlify ([#26](https://github.com/douglasabnovato/coin-wallet/issues/26)) e fechar a issue dos alertas do Dependabot, já ligados ([#38](https://github.com/douglasabnovato/coin-wallet/issues/38)).
-- Código: filtro por categoria e mês ([#28](https://github.com/douglasabnovato/coin-wallet/issues/28)), ESLint e versões maiores ([#30](https://github.com/douglasabnovato/coin-wallet/issues/30)), edição com axe e teclado ([#39](https://github.com/douglasabnovato/coin-wallet/issues/39)) e LCP depois do merge ([#40](https://github.com/douglasabnovato/coin-wallet/issues/40)).
+Ver "O que queremos fazer" no topo deste README.
 
 Detalhes em [docs/ANALISE.md](docs/ANALISE.md), [docs/ARQUITETURA.md](docs/ARQUITETURA.md) e [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md).
 

@@ -1,6 +1,6 @@
 # MVP — Coin Wallet
 
-> Criado em 31/10/2026, com os critérios usados no `movies`. Revisto em 16/11/2026 (ciclo de 16/11/2026; critério 9 às 15h02, com os alertas do Dependabot ligados), conferindo cada "Atende" contra a coluna de evidência da régua do `engenharia`.
+> Criado em 31/10/2026, com os critérios usados no `movies`. Revisto em 16/11/2026 (ciclo de 16/11/2026; critério 9 às 15h02, com os alertas do Dependabot ligados) e em 18/11/2026 (critério 7 medido de novo no ar), conferindo cada "Atende" contra a coluna de evidência da régua do `engenharia`.
 
 **Nível:** Vitrine (N2). Os 12 critérios se aplicam.
 
@@ -24,17 +24,18 @@
 | 4 | Escopo enxuto | Seção "Fora do MVP" | Atende: tudo fica no navegador | Seção 3 |
 | 5 | Medição de uso | Painel da ferramenta com visitas | Parcial: código pronto (GoatCounter sem cookie, só no site publicado, rotas e evento `despesa-registrada`, sem e-mail, valor nem descrição); a conta não existe | `curl -s -o /dev/null -w "%{http_code}" https://douglasabnovato.goatcounter.com/`, 16/11/2026: 400 (conta inexistente). Código: `src/tests/medicao.test.jsx` e `e2e/fluxo.pw.js`. Conta: #24 (responsável) |
 | 6 | Falhas tratadas | Testes de falha de rede, lista vazia e espera | Atende: falha de cotação, valor inválido, lista vazia e "Carregando moedas…" têm mensagem e teste | `npm test`, 16/11/2026: 56 testes, 0 falhas. `src/tests/v2.test.jsx` ("sem cotação a despesa não é salva", "valor vazio ou zero não chama a API"), `src/tests/resumo.test.jsx` ("Carregando moedas…", "sem despesas não há resumo"); falha de cotação também em `e2e/fluxo.pw.js` |
-| 7 | Desempenho aceitável | Lighthouse móvel no site publicado, 3 execuções, mediana | Atende: `/carteira`, 3 execuções válidas: 2,29 / 2,26 / 2,38 s, mediana 2,29 s; TBT 16 / 55 / 65 ms (mediana 55 ms); elemento do LCP `main.wallet-main > p.table-empty` | `npx lighthouse@12.8.2 https://coin-wallet-app.netlify.app/carteira` (móvel, padrão), 16/11/2026 04h54. Antes, o bundle publicado (`index-DT4agUWF.js`) foi conferido igual ao `npm run build` da `main`. Esta série não cobre o ciclo de 16/11/2026, que muda o estilo do próprio elemento do LCP (`.table-empty`) e só vai ao ar com o merge na `main`: medir de novo (#40) |
-| 8 | Acessibilidade básica | axe e teclado no navegador | Atende: axe (WCAG 2.0 a 2.2, A e AA) sem violações e sem contraste "incompleto" no login, na carteira vazia, com 3 despesas, com o aviso de desfazer e com o mouse sobre "Adicionar despesa", em desktop e em celular (375 px, sem rolagem horizontal). Percurso só por teclado: entra, registra, exclui e desfaz, com o foco visível conferido pelos valores do app em cada parada. O app não tem tema escuro próprio (não há `prefers-color-scheme` no CSS), por isso não há teste no escuro | `e2e/acessibilidade.pw.js`. `npm run test:e2e`, 16/11/2026: 4 testes de acessibilidade, 0 falhas; job `e2e` verde no run 43828688307 (PR #41, commit 72b3b07, 16/11/2026). Mutação, 16/11/2026: com o gradiente #04AA6D de volta no `src/pages/Login/index.css`, `npx playwright test e2e/acessibilidade.pw.js -g login` falha com `color-contrast: button`; com #e53e3e no Excluir, `-g "com despesas"` falha com `color-contrast: #excluir-0 \| #excluir-1 \| #excluir-2` |
+| 7 | Desempenho aceitável | Lighthouse móvel no site publicado, 3 execuções, mediana | Atende (18/11/2026): `/carteira`, 3 execuções válidas: 2,38 / 2,10 / 2,04 s, mediana 2,10 s; TBT 12 / 80 / 5 ms (mediana 12 ms); elemento do LCP `main.wallet-main > p.table-empty` nas 3 | `npx lighthouse@12.8.2 https://coin-wallet-app.netlify.app/carteira --only-categories=performance` (móvel, padrão), 18/11/2026 17h59. Antes, o bundle publicado (`index-spldz23U.js`, com o ciclo de 16/11/2026) foi conferido igual ao `npm run build` da `main` (commit 31c88cd). Série anterior, 16/11/2026, bundle `index-DT4agUWF.js`: mediana 2,29 s (#40) |
+| 8 | Acessibilidade básica | axe e teclado no navegador | Atende: axe (WCAG 2.0 a 2.2, A e AA) sem violações e sem contraste "incompleto" no login, na carteira vazia, com 3 despesas, com o aviso de desfazer, no modo de edição e com o mouse sobre "Adicionar despesa", em desktop e em celular (375 px, sem rolagem horizontal). Percurso só por teclado: entra, registra, exclui e desfaz; e edita, salva e cancela uma despesa, com o foco indo ao Valor e voltando ao "Editar" da linha (#39, 18/11/2026). Foco visível conferido pelos valores do app em cada parada. O app não tem tema escuro próprio (não há `prefers-color-scheme` no CSS), por isso não há teste no escuro | `e2e/acessibilidade.pw.js`. `npm run test:e2e`, 18/11/2026: 5 testes de acessibilidade, 0 falhas (o 5º, de edição, falhou sem a correção do foco). Em 16/11/2026: 4 testes, job `e2e` verde no run 43828688307 (PR #41, commit 72b3b07, 16/11/2026). Mutação, 16/11/2026: com o gradiente #04AA6D de volta no `src/pages/Login/index.css`, `npx playwright test e2e/acessibilidade.pw.js -g login` falha com `color-contrast: button`; com #e53e3e no Excluir, `-g "com despesas"` falha com `color-contrast: #excluir-0 \| #excluir-1 \| #excluir-2` |
 | 9 | Segurança e conformidade | `npm audit --omit=dev` e alertas do Dependabot pela API | Atende: alertas do Dependabot ligados pelo responsável em 16/11/2026, sem alerta aberto; audit de produção sem vulnerabilidades. Sem senha real nem servidor, sem segredo no código, CSV neutraliza fórmulas (OWASP), a medição não envia dado pessoal | `gh api "repos/douglasabnovato/coin-wallet/dependabot/alerts?state=open&per_page=100" --jq length`, 16/11/2026 12:02: 0 alertas abertos. `npm audit --omit=dev`, 16/11/2026 12:02: 0 vulnerabilidades. `src/utils/csv.js` |
 | 10 | Entrega confiável | CI nos PRs e principal protegida | Atende: a `main` só recebe PR, com os jobs `verificar` e `e2e` verdes; force push e exclusão bloqueados. A Netlify publica a `main` | `gh api repos/douglasabnovato/coin-wallet/rules/branches/main`, 16/11/2026: `deletion`, `non_fast_forward`, `pull_request` e `required_status_checks` com `e2e` e `verificar` (ruleset `principal-protegida`, ativo) |
-| 11 | Testes dos fluxos críticos | Testes no CI, sem `skipped` | Atende: 56 testes Vitest no job `verificar` e 8 testes Playwright no job `e2e`, sem `skip` | `npm test` e `npm run test:e2e`, 16/11/2026: 56 e 8 testes, 0 falhas, 0 pulados. Jobs `verificar` e `e2e` verdes no run 43799383630 da `main` e no run 43828688307 do PR #41 |
-| 12 | Documentação honesta | README com comandos conferidos contra o `package.json` | Atende: README, este documento e `PLANO-DE-ACAO.md` conferidos contra o `package.json` e contra a saída dos testes em 16/11/2026 | Scripts `dev`, `build`, `test`, `test:e2e` no `package.json`; link publicado: `curl`, 16/11/2026: 200 em `/` e `/carteira` |
+| 11 | Testes dos fluxos críticos | Testes no CI, sem `skipped` | Atende: ESLint 9 (`npm run lint`), 58 testes Vitest no job `verificar` e 9 testes Playwright no job `e2e`, sem `skip` | `npm run lint`, `npm test` e `npm run test:e2e`, 18/11/2026: lint sem erros, 58 e 9 testes, 0 falhas, 0 pulados (#30, #39); jobs `verificar` (com o lint) e `e2e` verdes no run 44398423640 do PR #48. Em 16/11/2026: 56 e 8. Jobs `verificar` e `e2e` verdes no run 43799383630 da `main` e no run 43828688307 do PR #41 |
+| 12 | Documentação honesta | README com comandos conferidos contra o `package.json` | Atende: README, este documento e `PLANO-DE-ACAO.md` conferidos contra o `package.json` e contra a saída dos testes em 18/11/2026 | Scripts `dev`, `build`, `test`, `test:e2e` e `lint` no `package.json`; link publicado: `curl`, 18/11/2026: 200 em `/` e `/carteira` |
 
-**Endereço oficial:** https://coin-wallet-app.netlify.app/. Conferido em 16/11/2026: responde 200 em `/` e `/carteira` e serve `index-DT4agUWF.js`, o mesmo do build da `main`. O GitHub Pages não está ligado: #26.
+**Endereço oficial:** https://coin-wallet-app.netlify.app/. Conferido em 18/11/2026: responde 200 em `/` e `/carteira` e serve `index-spldz23U.js`, o mesmo do build da `main`. O GitHub Pages não está ligado (`gh api repos/douglasabnovato/coin-wallet/pages`: 404; o endereço do Pages responde 404): #26.
 
 ## Histórico
 
+- 18/11/2026: critério 7 medido de novo no ar, já com o ciclo de 16/11/2026 publicado (#40). Mediana 2,10 s (antes 2,29 s). Segue "Atende"; a contagem não muda.
 - 16/11/2026, 15h02: 10 → 11 de 12. O critério 9 era "Parcial" porque a API de alertas do Dependabot respondia 403 (alertas desligados, engenharia#33, #38). O responsável ligou os alertas; a API mostra 0 abertos e o audit de produção, 0 vulnerabilidades.
 - 10/11/2026: declarado 11 de 12. Revisto em 16/11/2026 contra a régua: eram 9 de 12. O 8 não tinha axe nem teclado em teste de navegador (só Lighthouse e um percurso à mão), e o 9 estava "Atende" com o Dependabot desligado (regra 1 do ciclo, engenharia#33).
 - 05/11/2026, critério 10 revisto em 10/11/2026: 8 de 12. Parciais: 2 (meta proposta), 3 (pessoa de fora), 10 (Netlify sem esperar o CI); 5 "Não atende".
@@ -48,13 +49,16 @@
 | 3 | Mostrar a data da cotação usada | Feito |
 | 4 | Resumo por categoria e exportação em CSV | Feito (#21) |
 | 5 | Aviso de carregamento das moedas | Feito |
-| 6 | Desfazer a exclusão (#27) | Feito no ciclo de 16/11/2026 (na sprint; falta a `main`) |
-| 7 | axe e teclado no navegador, no CI (#29) | Feito no ciclo de 16/11/2026 (na sprint; falta a `main`) |
-| 8 | Contraste dos botões e rolagem horizontal no celular | Feito no ciclo de 16/11/2026 (na sprint; falta a `main`) |
+| 6 | Desfazer a exclusão (#27) | Feito no ciclo de 16/11/2026 (na `main` desde 16/11/2026, PR #43) |
+| 7 | axe e teclado no navegador, no CI (#29) | Feito no ciclo de 16/11/2026 (na `main` desde 16/11/2026, PR #43) |
+| 8 | Contraste dos botões e rolagem horizontal no celular | Feito no ciclo de 16/11/2026 (na `main` desde 16/11/2026, PR #43) |
+| 9 | Foco na edição de despesa, com axe e teclado no navegador (#39) | Feito no ciclo de 18/11/2026 (na sprint; falta a `main`) |
+| 10 | ESLint 9 no CI (#30) | Feito no ciclo de 18/11/2026 (na sprint; falta a `main`) |
+| 11 | LCP medido de novo no ar (#40) | Feito em 18/11/2026: mediana 2,10 s |
 
 ## 3. Fora do MVP
 
-Contas reais, sincronização entre aparelhos e migração para Redux Toolkit. A lista é uma proposta e pode mudar com a decisão do responsável.
+Contas reais, sincronização entre aparelhos, migração para Redux Toolkit e filtro por categoria e mês (#28, fechada como não planejada em 18/11/2026: não serve à hipótese de registrar a primeira despesa). A lista é uma proposta e pode mudar com a decisão do responsável.
 
 ## Medições de 02/11/2026
 
